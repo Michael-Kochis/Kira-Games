@@ -13,6 +13,7 @@
   firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+var firestore = firebase.firestore();
 
 function copyrightHide() {
   copyright = document.getElementById("copyright");
@@ -28,8 +29,17 @@ function forbid() {
   var nomen = document.getElementById("nomen");
   var namae = document.getElementById("namae");
   var ipHolder = document.getElementById("ipHolder");
-  var folder = nomen.value[0];
-  console.log(folder);
+  var forbidThis = { 
+    "nomen": nomen.value,
+    "namae": namae.value,
+    "ipHolder": ipHolder.value
+  }
+
+  const docRef = firestore.doc("/Games/NeoMetaU-game/forbidden-ip/" + forbidThis.nomen);
+  docRef.set(forbidThis).catch(e => alert(e.message) );
+  nomen.value = "";
+  namae.value = "";
+
 }
 
 function register() {
@@ -55,13 +65,20 @@ function login() {
   }).catch(function(error) {
     alert(error.message);
   });
+
+  email.value = "";
+  password.value = "";
 }
 
 function logout() {
   var email = document.getElementById("email");
+  var password = document.getElementById("password");
+
   auth.signOut().catch(function (error) { 
     alert(error.message);
   });
   copyrightHide();
   loginMessage.textContent = "";
+  email.value = "";
+  password.value = "";
 }
