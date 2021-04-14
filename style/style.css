@@ -1,0 +1,67 @@
+button {
+    color: white;
+    background-color: dodgerblue;
+    margin: 0 0.2rem
+  }
+  
+  h3 {
+    color: mediumblue;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  input {
+    text-align: center;
+    margin: 0 3rem;
+  }
+
+  .buttonHolder {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+  }
+
+  #copyright {
+    display: flex;
+    flex-flow: column nowrap;
+    visibility: hidden;
+    width: 25%;
+    margin: 1rem auto;
+  }
+  
+  #loginForm {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0, 24), 0 17px 50px 0 rgba(0,0,0, 17);
+    margin: 1rem auto;
+    width: 25%;
+  }
+
+  #loginForm h3, #loginForm .buttonHolder {
+    margin-bottom: 1rem;
+  }
+
+  #loginMessage {
+    font-size: 2rem;
+    color:dodgerblue;
+  }
+
+  /* Media inquiries */
+  @media (max-width: 1000px) {
+    #copyright, #loginForm {
+      width: 33%;
+    }
+  }
+
+  @media (max-width: 750px) {
+    #copyright, #loginForm {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    #loginForm {
+      width: fit-content;
+    }
+  }
