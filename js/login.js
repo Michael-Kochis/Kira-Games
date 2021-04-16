@@ -1,4 +1,4 @@
-  // Your web app's Firebase configuration
+ // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
     apiKey: "AIzaSyBArcberrOpO6IjpoyfQLeQsICCQQK1BZ8",
@@ -9,9 +9,9 @@
     appId: "1:972764072540:web:8026011b3a775c92a5b499",
     measurementId: "G-ECN858RGRF"
   };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 var firestore = firebase.firestore();
 
