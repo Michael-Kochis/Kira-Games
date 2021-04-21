@@ -1,19 +1,7 @@
- // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyBArcberrOpO6IjpoyfQLeQsICCQQK1BZ8",
-    authDomain: "login-basic-99280.firebaseapp.com",
-    projectId: "login-basic-99280",
-    storageBucket: "login-basic-99280.appspot.com",
-    messagingSenderId: "972764072540",
-    appId: "1:972764072540:web:8026011b3a775c92a5b499",
-    measurementId: "G-ECN858RGRF"
-  };
+import {app, auth} from "firebase"
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-var firestore = firebase.firestore();
+var firestore = app.firestore();
 
 function copyrightHide() {
   copyright = document.getElementById("copyright");
