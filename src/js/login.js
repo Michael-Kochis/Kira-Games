@@ -1,7 +1,4 @@
-import {app, auth} from "firebase"
-
-// Initialize Firebase
-var firestore = app.firestore();
+import {auth, firestore} from "firebase"
 
 function copyrightHide() {
   copyright = document.getElementById("copyright");
