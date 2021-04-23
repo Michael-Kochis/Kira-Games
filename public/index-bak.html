@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Login and Registration</title>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js" ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js" ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js" ></script>
+    
+    <!-- Links for CSS -->
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+
+    <!-- Links for JS -->
+    <script type="text/javascript" src="js/login.js" ></script>
+ 
+  </head>
+  
+  <body>
+    <section id="loginForm">
+    <h3>Login/Registration Form</h3>
+    <section id="loginMessage"></section>
+      <input class="email" type="email" placeholder="email" id="email" /><br>
+      <input class="password" type="password" placeholder="password" id="password" /><br>
+    
+      <section class="buttonHolder">
+        <button onclick="register()" id="register">Register</button>
+        <button onclick="login()" id="login">Log In</button>
+        <button onclick="logout()" id="logout">Log Off</button>
+      </section>
+    </section>
+    <section id="copyright">
+      <input id="nomen" class="text" type="text" placeholder="nomen" />
+      <input id="namae" class="text" type="text" placeholder="namae" />
+      <input id="ipHolder" class="text" type="text" placeholder="copyright" />
+      <section class="buttonHolder">
+        <button onclick="forbid()" id="forbid">Enter Copyright</button>
+      </section>
+    </section>
+  </body>
+</html>
