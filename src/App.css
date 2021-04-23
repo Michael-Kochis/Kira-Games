@@ -45,11 +45,26 @@ label {
   }
 }
 
+.btn {
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  color:aliceblue;
+  background-color: navy;
+  width: 60%;
+  padding: 2%;
+  border-radius: 1rem;
+  margin: 0.2rem, auto;
+  border-bottom: 1rem;
+}
+
 .button-register {
   font-size: 1.5rem;
   color:aliceblue;
   background-color: navy;
   width: 40%;
+  padding: 2%;
+  margin: 0.4rem, auto;
   border-radius: 1rem;
 }
 

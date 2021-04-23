@@ -1,7 +1,8 @@
+import '../App.css'
 import React, {useRef, useState} from 'react'
-import {Button, Card, Form} from 'react-bootstrap'
-import '../App.css';
-import { useAuth} from './context/authContext'
+import {Alert, Button, Card, Form} from 'react-bootstrap'
+import {Link, useHistory} from 'react-router-dom'
+import { useAuth } from './context/authContext'
 
 function Signup() {
     const emailRef = useRef();
@@ -9,23 +10,25 @@ function Signup() {
     const password2Ref = useRef();
     const {register} = useAuth();
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const history = useHistory();
 
     async function handleRegister(e) {
         e.preventDefault()
-    
-        // if (passwordRef.current.value !== password2Ref.current.value) {
-        //   return setError("Passwords do not match")
-        // }
-    
-        try {
-        //   setError("")
-          setLoading(true)
-          await register(emailRef.current.value, passwordRef.current.value)
-        //   history.push("/")
-        } catch {
-          alert("Failed to create an account")
+              
+        if (passwordRef.current.value !== password2Ref.current.value) {
+          return setError("Passwords do not match")
         }
     
+            try {
+                setError("");
+                setLoading(true);
+                await register(emailRef.current.value, passwordRef.current.value);
+                history.push("/");
+            } catch {
+                setError("Failed to create an account");
+            }
+        
         setLoading(false)
       }
         
@@ -34,6 +37,7 @@ function Signup() {
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Register</h2>
+                    {error && <Alert variant="danger">{error}</Alert>}
                     <Form className="center text-center" onSubmit={handleRegister} >
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
@@ -50,7 +54,7 @@ function Signup() {
                         <Form.Group>
                             <Button disabled={loading} type="submit" className="button-register">Register</Button>
                         </Form.Group>
-                        <p>Already have an account?  Log In</p>
+                        <p>Already have an account?  <Link to="/login">Log In</Link></p>
                     </Form>
                 </Card.Body>
             </Card>
