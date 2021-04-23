@@ -47,7 +47,7 @@ function Login() {
                         </Form.Group>
                         <p>Need an account?  <Link to="/register">Register</Link></p>
                     </Form>
-                    <Link to="/forgot-password" classname="mt-3">Forgot Password?</Link>
+                    <Link to="/forgot-password" className="mt-3">Forgot Password?</Link>
                 </Card.Body>
             </Card>
         </div>
