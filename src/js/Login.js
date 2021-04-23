@@ -21,7 +21,7 @@ function Login() {
                 await login(emailRef.current.value, passwordRef.current.value);
                 history.push("/");
             } catch {
-                setError("Failed to create an account");
+                setError("Failed to log in.");
             }
         
         setLoading(false)
