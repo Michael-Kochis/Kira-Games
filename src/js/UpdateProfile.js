@@ -72,7 +72,7 @@ function UpdateProfile() {
               />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Update Profile
+              Update
             </Button>
           </Form>
         </Card.Body>
