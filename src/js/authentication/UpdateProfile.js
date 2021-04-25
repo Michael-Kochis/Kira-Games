@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "./context/authContext"
+import '../../App.css'
+import {CenteredContainer} from '../CenteredContainer'
+import { useAuth } from "../context/authContext"
 import { Link, useHistory } from "react-router-dom"
 
 function UpdateProfile() {
@@ -40,7 +42,7 @@ function UpdateProfile() {
   }
 
   return (
-    <>
+    <CenteredContainer>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
@@ -80,7 +82,7 @@ function UpdateProfile() {
       <div className="w-100 text-center mt-2">
         <Link to="/">Cancel</Link>
       </div>
-    </>
+    </CenteredContainer>
   )
 }
 
