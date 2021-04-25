@@ -22,7 +22,7 @@ function Profile() {
     }
 
     return (
-        <CenteredContainer id="dashboard-main">
+        <CenteredContainer id="profile">
             {error && <Alert variant="danger">{error}</Alert>}
             <strong>Email:</strong> {currentUser && currentUser.email}
             <p>Profile</p>
