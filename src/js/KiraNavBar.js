@@ -4,16 +4,16 @@ import { Nav, Navbar } from 'react-bootstrap'
 
 function KiraNavBar() {
     return (
-        <Navbar bg="light" expand="sm">
-      <Navbar.Brand as={Link} to="/">
-        Home
-      </Navbar.Brand>
-      <Nav>
-        <Nav.Link as={Link} to="/user">
-          Profile
-        </Nav.Link>
-      </Nav>
-    </Navbar>
+        <Navbar className="navbar-kira" bg="light" expand="sm">
+            <Navbar.Brand as={Link} to="/">
+                Home
+            </Navbar.Brand>
+            <Nav>
+                <Nav.Link as={Link} to="/user">
+                Profile
+                </Nav.Link>
+            </Nav>
+        </Navbar>
     )
 }
 
