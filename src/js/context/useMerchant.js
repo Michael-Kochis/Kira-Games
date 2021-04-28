@@ -1,4 +1,4 @@
-import  {React, useEffect, useState } from 'react'
+import  {React, useEffect, useRef, useState } from 'react'
 import {Button} from 'react-bootstrap'
 import {database} from '../firebase'
 import {useAuth} from './authContext'
@@ -6,6 +6,7 @@ import {useAuth} from './authContext'
 function UseMerchant() {
   const [children, setChildren] = useState([]);
   const { currentUser } = useAuth();
+  const childRef = useRef([]);
 
   function doNothing(object, e) {
     e.preventDefault();
@@ -31,7 +32,7 @@ function UseMerchant() {
   useEffect(() => {
       getChildren();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]); 
+  }, [childRef]); 
   
   return (
     <div>
