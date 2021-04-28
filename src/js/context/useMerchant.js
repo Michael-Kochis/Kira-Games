@@ -30,7 +30,7 @@ function UseMerchant() {
 
   useEffect(() => {
       getChildren();
-  }, []) 
+  }); 
   
   return (
     <div>
