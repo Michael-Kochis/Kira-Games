@@ -17,8 +17,18 @@ console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID);
 const auth = app.auth();
 var firestore = app.firestore();
 
+const database = {
+  games: firestore.collection('Games'),
+  getTime: firebase.firestore.FieldValue.serverTimeStamp,
+  docData: doc => {
+    return {...doc.data()}
+  },
+  persona: firestore.collection('Persona')
+}
+
 export {
     app,
     auth,
+    database,
     firestore
 }
