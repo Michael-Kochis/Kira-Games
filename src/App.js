@@ -6,6 +6,7 @@ import {Login} from './js/authentication/Login'
 import {PrivateRoute} from './js/authentication/PrivateRoute'
 import {Profile} from './js/Profile'
 import {RMDashboard} from './js/repair-merchant/rm-dashboard'
+import {RMGame} from './js/repair-merchant/rm-game'
 import {Signup} from './js/authentication/Signup'
 import { AuthProvider } from './js/context/authContext'
 import {UpdateProfile} from './js/authentication/UpdateProfile';
@@ -19,6 +20,7 @@ function App() {
               <Switch>
                 {/* Kira Games */}
                 <PrivateRoute exact path="/" component={RMDashboard} />
+                <PrivateRoute path="/repair-merchant/:name" component={RMGame} />
 
                 {/* Profile */}
                 <PrivateRoute exact path="/user" component={Profile} />

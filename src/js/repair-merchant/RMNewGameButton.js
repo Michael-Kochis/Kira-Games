@@ -37,16 +37,16 @@ function RMNewGameButton() {
 
     return (
         <div>
-            <Modal show={modalOpen} onHide={closeModal}>
-                <Form onSubmit={handleSubmit}>
-                    <Modal.Body>
-                        <Form.Group>
-                            <Form.Label>New Game</Form.Label>
+            <Modal show={modalOpen} onHide={closeModal} className="modal-top">
+                <Form onSubmit={handleSubmit} className="w-40 d-flex justify-content-center align-items-center">
+                    <Modal.Body className="d-flex justify-content-center align-items-center">
+                        <Form.Group className="d-flex justify-content-center align-items-center">
+                            <Form.Label className="rt-2">Avatar Name</Form.Label>
                             <Form.Control type="text" required value={name}  
-                                onChange={e => setName(e.target.value)}/>
+                                className="rt-2 tall-2" onChange={e => setName(e.target.value)}/>
                         </Form.Group>
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer className="d-flex">
                         <Button variant="secondary" onClick={closeModal} >Close</Button>
                         <Button variant="success" type="submit" >New Repair Merchant</Button>
                         </Modal.Footer>
