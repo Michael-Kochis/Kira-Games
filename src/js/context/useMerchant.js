@@ -1,5 +1,6 @@
 import  {React, useEffect, useRef, useState } from 'react'
 import {Button} from 'react-bootstrap'
+import {useHistory} from 'react-router-dom'
 import {database} from '../firebase'
 import {useAuth} from './authContext'
 
@@ -7,10 +8,11 @@ function UseMerchant() {
   const [children, setChildren] = useState([]);
   const { currentUser } = useAuth();
   const childRef = useRef([]);
+  const history = useHistory();
 
   function doNothing(object, e) {
     e.preventDefault();
-    console.log(object);
+    history.push(`repair-merchant/${object}`);
   }
 
   async function getChildren() {
@@ -39,7 +41,7 @@ function UseMerchant() {
       {children && children.length > 0 && (
         <div className="d-flex flex-wrap">
           {children.map((child) => (
-            <Button id={child.name} onClick={(e) => doNothing(child.name, e)}>
+            <Button id={child.name} className="btn btn-primary" onClick={(e) => doNothing(child.name, e)}>
               {child.name}
             </Button>
           ))}

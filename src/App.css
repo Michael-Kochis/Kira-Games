@@ -45,6 +45,10 @@ label {
   }
 }
 
+.rt-2 {
+  font-size: 2rem;
+}
+
 .btn {
   font-size: 1.5rem;
   text-decoration: none;
@@ -77,9 +81,26 @@ label {
   color: greenyellow;
 }
 
+.modal-top {
+  position: fixed;
+  top: 0;
+  max-width: 40%;
+  left: 40%;
+  margin: 0 auto;
+}
+
 .no-blue {
   background-color: #7f7f7f;
   border: 0px solid #7f7f7f;
+}
+
+.tall-2 {
+  height: 3rem;
+  font-size: 2rem;
+}
+
+.text-white {
+  color: white;
 }
 
 #email, #password, #password-confirm {
