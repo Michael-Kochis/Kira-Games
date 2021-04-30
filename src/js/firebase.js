@@ -19,10 +19,13 @@ var firestore = app.firestore();
 
 const database = {
   games: firestore.collection('Games'),
-  getTime: firebase.firestore.FieldValue.serverTimeStamp,
+  getTime: () => {
+    return firebase.firestore.FieldValue.serverTimestamp()
+  },
   docData: doc => {
     return {...doc.data()}
   },
+  messages: firestore.collection('messages'),
   persona: firestore.collection('Persona')
 }
 
