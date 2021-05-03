@@ -12,8 +12,6 @@ function ChatApp(props) {
     const query = messagesRef.orderBy('timeStamp').limit(25);
   
     const [messages] = useCollectionData(query, {idField: 'id'});
-    console.log(messages)
-  
     const [formValue, setFormValue] = useState('');
   
   
@@ -31,10 +29,10 @@ function ChatApp(props) {
       dummy.current.scrollIntoView({ behavior: 'smooth' });
     }
   
-    return (<>
+    return (<span className="chat-box half-screen">
       <main>
   
-        <div className="chat-box">
+        <div>
             {messages && messages.map(msg => <ChatMessage key={msg.id} owner={msg.owner} message={msg} name={msg.name}/>)}
         </div>
   
@@ -44,21 +42,20 @@ function ChatApp(props) {
   
       <form onSubmit={sendMessage}>
   
-        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Remember, kids use this also." />
   
         <button type="submit" disabled={!formValue}>Send</button>
   
       </form>
-    </>)
+    </span>)
   }
   
   
   function ChatMessage(props) {
-    const currentUser = useAuth();
+    const {currentUser} = useAuth();
     const { message } = props.message;
     const name = props.name;
-    let {owner} = "";
-    const messageClass = owner === currentUser.uid ? 'sent' : 'received';
+    let owner = "";
 
     if (typeof props != undefined) {
         owner = props.owner;
@@ -66,6 +63,8 @@ function ChatApp(props) {
         owner = currentUser.uid;
     }
   
+    const messageClass = owner === currentUser.uid ? 'sent' : 'received';
+
     return (<>
       <div className={`message ${messageClass}`}>
         <p>{name}: {message}</p>
