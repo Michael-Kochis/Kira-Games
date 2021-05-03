@@ -41,7 +41,7 @@ label {
   text-align: center;
   color:aliceblue;
   background-color: navy;
-  width: 60%;
+  max-width: 60%;
   padding: 2%;
   border-radius: 1rem;
   margin: 0.2rem, auto;
