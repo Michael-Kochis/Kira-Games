@@ -3,6 +3,7 @@
         "firestore",
         "fontawesome",
         "fortawesome",
-        "kira"
+        "kira",
+        "merch"
     ]
 }
