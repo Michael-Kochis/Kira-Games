@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import '../../App.css'
 import {ChatApp} from '../chatApp/chatApp'
 import {database} from '../firebase'
+import {RMCharacterSheet} from './rm-character'
 import {useAuth} from '../context/authContext'
 
 
@@ -29,9 +30,12 @@ function RMGame() {
     }, [merchantRef]); 
     
     return (
-        <div>
-            <h3 className="text-white">Name: {name} </h3>
-            <ChatApp id={name}></ChatApp>
+        <div >
+            <h3 className="text-white top">Name: {name} </h3>
+            <div className="d-flex left-right">
+                <ChatApp id={name} className="half-screen"></ChatApp>
+                <RMCharacterSheet id={name} className="half-screen"></RMCharacterSheet>
+            </div>
             {merchant && <h3>{merchant.name}</h3> }
         </div>
     )

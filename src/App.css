@@ -1,3 +1,7 @@
+div {
+  width: 100%;
+}
+
 label {
   width: 60%;
   max-height: 2.5rem;
@@ -8,17 +12,7 @@ label {
 
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  width: 100%;
 }
 
 .App-header {
@@ -28,21 +22,13 @@ label {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .rt-2 {
@@ -72,13 +58,40 @@ label {
   border-radius: 1rem;
 }
 
-.center {
-  margin: 0 auto;
+.character-sheet {
+  background-color: #ffe4c4;
+  color: black;
+  width: 40%;
+  border-radius: 1rem;
+  font-size: 1rem;
 }
 
 .fa-plus-square {
   font-size: 2rem;
   color: greenyellow;
+}
+
+.half-screen {
+  width: 45%;
+}
+
+.left {
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.left-right {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.message {
+  font-size: 1rem;
+  padding: 0 2%;
+  margin: 1%;
+  width: 80%;
 }
 
 .modal-top {
@@ -92,6 +105,18 @@ label {
 .no-blue {
   background-color: #7f7f7f;
   border: 0px solid #7f7f7f;
+}
+
+.received {
+  background-color: blue;
+  text-align: right;
+  border-radius: 1rem;
+}
+
+.sent {
+  background-color: skyblue;
+  text-align: left;
+  border-radius: 1rem;
 }
 
 .tall-2 {

@@ -24,8 +24,7 @@ function UseMerchant() {
             setChildren(snapShot.docs.map(doc => doc.data()))
         }).catch(error => alert(error));
         
-        console.log(children);
-        return children;
+       return children;
     } catch (error) {
       console.log(error);
     }
