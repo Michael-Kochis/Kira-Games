@@ -4,6 +4,7 @@ import '../../App.css'
 import {ChatApp} from '../chatApp/chatApp'
 import {database} from '../firebase'
 import {RMCharacterSheet} from './rm-character'
+import {RMMainGame} from './gameWindow'
 import {useAuth} from '../context/authContext'
 
 
@@ -36,7 +37,7 @@ function RMGame() {
                 <ChatApp id={name} className="half-screen"></ChatApp>
                 <RMCharacterSheet id={name} className="half-screen"></RMCharacterSheet>
             </div>
-            {merchant && <h3>{merchant.name}</h3> }
+            {merchant && <RMMainGame merchant={merchant} /> }
         </div>
     )
 }
