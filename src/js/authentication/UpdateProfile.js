@@ -47,7 +47,7 @@ function UpdateProfile() {
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
+          <Form className="d-flex justify-content-center align-items-center" onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -59,7 +59,7 @@ function UpdateProfile() {
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control
+              <Form.Control 
                 type="password"
                 ref={passwordRef}
                 placeholder="Leave blank to keep the same"

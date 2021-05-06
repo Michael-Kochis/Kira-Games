@@ -2,8 +2,12 @@ div {
   width: 100%;
 }
 
+input {
+  max-width: 40%;
+}
+
 label {
-  width: 60%;
+  max-width: 60%;
   max-height: 2.5rem;
   font-size: 1.5rem;
   text-align: right;
@@ -108,13 +112,13 @@ label {
 }
 
 .received {
-  background-color: blue;
+  background-color: skyblue;
   text-align: right;
   border-radius: 1rem;
 }
 
 .sent {
-  background-color: skyblue;
+  background-color: rgb(37, 65, 156);
   text-align: left;
   border-radius: 1rem;
 }
@@ -137,9 +141,19 @@ label {
   margin: 0 auto;
 }
 
+#email label, #password label, #password-confirm label {
+  min-width: 28%;
+  max-width: 45%;
+}
+
+#email input, #password input, #password-confirm input {
+  min-width: 25%;
+  max-width: 45%;
+}
+
 #navbar-kira {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
