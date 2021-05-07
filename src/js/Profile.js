@@ -26,8 +26,8 @@ function Profile() {
             {error && <Alert variant="danger">{error}</Alert>}
             <strong>Email:</strong> {currentUser && currentUser.email}
             <p>Profile</p>
-            <Link to="/update-profile" className="center w-100"><Button className="btn center">Update Profile</Button></Link>
-            <Link to="/" className="center w-100"><Button className="btn center">Games</Button></Link>
+            <Link to="/update-profile" className="center w-40"><Button className="btn center">Update Profile</Button></Link>
+            <Link to="/" className="center w-40"><Button className="btn center">Games</Button></Link>
             <Button onClick={handleLogout} className="btn center">Log Out</Button>
         </CenteredContainer>
     );

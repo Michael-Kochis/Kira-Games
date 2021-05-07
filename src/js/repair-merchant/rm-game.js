@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import '../../App.css'
 import {ChatApp} from '../chatApp/chatApp'
 import {database} from '../firebase'
+import {KiraNavBar} from '../KiraNavBar'
 import {RMCharacterSheet} from './rm-character'
 import {RMMainGame} from './gameWindow'
 import {useAuth} from '../context/authContext'
@@ -32,6 +33,7 @@ function RMGame() {
     
     return (
         <div >
+            <KiraNavBar className="w-100" />
             <h3 className="text-white top">Name: {name} </h3>
             <div className="d-flex left-right">
                 <ChatApp id={name} className="half-screen"></ChatApp>
