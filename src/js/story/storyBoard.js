@@ -36,6 +36,8 @@ function StoryBoard(props) {
                         if (item.speaker === "merchant") {
                             item.speaker = merchantName;
                         }
+                        item.quote = item.quote.replace("$merchant", merchantName);
+
                         return item; 
                     })) 
                 }
@@ -63,6 +65,7 @@ function StoryBoard(props) {
     }, [storyRef])
 
     let currentStory = story[index];
+
 
     return (
         <div id="story-board">
