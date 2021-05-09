@@ -9,6 +9,7 @@ import {RMDashboard} from './js/repair-merchant/rm-dashboard'
 import {RMGame} from './js/repair-merchant/rm-game'
 import {Signup} from './js/authentication/Signup'
 import { AuthProvider } from './js/context/authContext'
+import {MerchantProvider} from './js/context/merchantContext'
 import {UpdateProfile} from './js/authentication/UpdateProfile';
 
 function App() {
@@ -17,21 +18,22 @@ function App() {
       <header className="App-header">
           <Router>
             <AuthProvider>
-              <Switch>
-                {/* Kira Games */}
-                <PrivateRoute exact path="/" component={RMDashboard} />
-                <PrivateRoute path="/repair-merchant/:name" component={RMGame} />
+                <Switch>
+                  {/* Kira Games */}
+                  <MerchantProvider>
+                    <PrivateRoute exact path="/" component={RMDashboard} />
+                    <PrivateRoute path="/repair-merchant/:name" component={RMGame} />
+                  </MerchantProvider>
 
-                {/* Profile */}
-                <PrivateRoute exact path="/user" component={Profile} />
-                <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                  {/* Profile */}
+                  <PrivateRoute exact path="/user" component={Profile} />
+                  <PrivateRoute path="/update-profile" component={UpdateProfile} />
 
-                {/* Auth */}
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Signup} />
-                <Route path="/reset-password" component={ForgotPassword} />
-              </Switch>
-              
+                  {/* Auth */}
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Signup} />
+                  <Route path="/reset-password" component={ForgotPassword} />
+                </Switch>
             </AuthProvider>
           </Router>
       </header>
