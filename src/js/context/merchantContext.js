@@ -14,6 +14,34 @@ function MerchantProvider({children}) {
     let {currentUser} = useAuth();
     let loadingMerchant = false;
 
+    function addDebentures(input) {
+        if (currentMerchant) {
+            if (!currentMerchant.debentures) {
+                currentMerchant.debentures = input;
+            } else {
+                console.log("current debentures detected");
+            }
+        } else {
+            alert("No merchant error.")
+        }
+        saveMerchant();
+    }
+
+    function addStory(story) {
+        if (currentMerchant) {
+            if (!currentMerchant.story) {
+                currentMerchant.story = [story];
+            } else {
+                if (!currentMerchant.story.includes(story)) { 
+                    currentMerchant.story = [...currentMerchant.story, story]
+                }
+            }
+            saveMerchant();
+        } else {
+            alert("No Merchant error, cannot add story " + story);
+        }
+    }
+
     async function loadMerchant(merchantName) {
         try {
             loadingMerchant = true;
@@ -31,8 +59,20 @@ function MerchantProvider({children}) {
         }
     }
 
+    async function saveMerchant() {
+        await database.persona
+            .doc(`${currentUser.uid}`)
+            .collection("Games")
+            .doc(`${currentMerchant.name}`)
+            .set(currentMerchant)
+            .then()
+            .catch((error) => alert(error))
+    }
+
     const value = {
         currentMerchant,
+        addDebentures,
+        addStory,
         loadMerchant
     }
 
