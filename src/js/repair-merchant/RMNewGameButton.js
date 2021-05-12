@@ -24,7 +24,9 @@ function RMNewGameButton() {
             XP: 0,
             honor: 100,
             coins: {gold: 0, silver: 0, copper: 0, tin: 0},
-            skills: {leather:3, lumber: 3, smith: 3}
+            debentures: {gold: 0, silver: 0, copper: 0, tin: 0},
+            skills: {leather:3, lumber: 3, smith: 3},
+            story: {}
         });
 
         setName("");

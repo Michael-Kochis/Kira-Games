@@ -3,16 +3,25 @@ import {Button} from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
 import '../../App.css'
 import {database} from '../firebase'
+import {useMerchant} from '../context/merchantContext'
 
 function StoryBoard(props) {
     let [story, setStory] = useState([]);
+    let [storyAward, setStoryAward] = useState();
     let [endStory, setEndStory] = useState(false);
     let [startStory, setStartStory] = useState(true);
     let history = useHistory();
     let [index, setIndex] = useState(0);
+    let {addDebentures, addStory, currentMerchant} = useMerchant();
     let name = props.id;
     let merchantName = props.merchant;
     const storyRef = useRef([]);
+
+    function addStoryAward(award) {
+        if (award.debentures) {
+            addDebentures(award.debentures);
+        }
+    }
 
     function backStory() {
         setEndStory(false);
@@ -23,7 +32,11 @@ function StoryBoard(props) {
     }
 
     function finishStory() {
-        history.push("/");
+        if (currentMerchant) {
+            addStory("RM-Intro");
+            addStoryAward(storyAward);
+        }
+        history.push(`/repair-merchant/${merchantName}`);
     }
 
     async function getStory() {
@@ -32,6 +45,8 @@ function StoryBoard(props) {
             .doc(`${name}`).get().then(doc => { 
                 if (doc.exists) { 
                     story = doc.data().story;
+                    setStoryAward(doc.data().awards);
+                    storyAward = doc.data().awards;
                     setStory(story.map((item) => {
                         if (item.speaker === "merchant") {
                             item.speaker = merchantName;
@@ -65,7 +80,6 @@ function StoryBoard(props) {
     }, [storyRef])
 
     let currentStory = story[index];
-
 
     return (
         <div id="story-board">
