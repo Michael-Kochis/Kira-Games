@@ -1,4 +1,5 @@
 import {React} from 'react'
+import { CartWindow } from '../repair-merchant/cartwindow'
 import {StoryBoard} from '../story/storyBoard'
 import { useMerchant } from '../context/merchantContext'
 
@@ -12,7 +13,6 @@ function RMMainGame(props) {
     } else {
         mode = "story";
     }
-    console.log(mode);
 
     if (mode === 'story') {
         return (
@@ -24,7 +24,7 @@ function RMMainGame(props) {
     } else { 
         return (
             <div>
-                {merchant && (mode === "game") && <p>Game window goes here.</p>}
+                {merchant && (mode === "game") && <CartWindow>This is the CartWindow</CartWindow>}
             </div>
                 
         )
