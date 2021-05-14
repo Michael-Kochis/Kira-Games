@@ -18,13 +18,12 @@ function App() {
       <header className="App-header">
           <Router>
             <AuthProvider>
-                <Switch>
+              <MerchantProvider>
+                  <Switch>
                   {/* Kira Games */}
-                  <MerchantProvider>
                     <PrivateRoute exact path="/" component={RMDashboard} />
                     <PrivateRoute path="/repair-merchant/:name" component={RMGame} />
-                  </MerchantProvider>
-
+                  
                   {/* Profile */}
                   <PrivateRoute exact path="/user" component={Profile} />
                   <PrivateRoute path="/update-profile" component={UpdateProfile} />
@@ -34,6 +33,7 @@ function App() {
                   <Route path="/register" component={Signup} />
                   <Route path="/reset-password" component={ForgotPassword} />
                 </Switch>
+              </MerchantProvider>    
             </AuthProvider>
           </Router>
       </header>

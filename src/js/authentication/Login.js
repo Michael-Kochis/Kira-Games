@@ -13,6 +13,7 @@ function Login() {
     const [error, setError] = useState('');
     const history = useHistory();
 
+    console.log("Reaching Login Provider.");
     async function handleLogin(e) {
         e.preventDefault()
               
