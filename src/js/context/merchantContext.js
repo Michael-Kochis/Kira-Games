@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import '../../App.css'
-import {useAuth} from './authContext'
-import {database} from '../firebase'
+import { useAuth } from './authContext'
+import { database } from '../firebase'
 
 const MerchantContext = React.createContext();
 

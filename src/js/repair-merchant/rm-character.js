@@ -1,5 +1,6 @@
 import {React } from 'react'
 import '../../App.css'
+import { CoinPurse } from '../common/money/coinpurse'
 import  { useMerchant }  from '../context/merchantContext'
 
 function RMCharacterSheet(props) {
@@ -17,8 +18,8 @@ function RMCharacterSheet(props) {
             {currentMerchant && <p>Skills: 
                 Leather: {currentMerchant.skills.leather}  Lumber: {currentMerchant.skills.lumber}  Smith: {currentMerchant.skills.smith}</p>}
             <br />
-            {currentMerchant && <p className="left">Coins:  Gold: {currentMerchant.coins.gold}  Silver: {currentMerchant.coins.silver}  Copper: {currentMerchant.coins.copper}  Tin: {currentMerchant.coins.tin}</p>}
-            {currentMerchant && currentMerchant.debentures && <p className="left">Debentures:  Gold: {currentMerchant.debentures.gold}  Silver: {currentMerchant.debentures.silver}  Copper: {currentMerchant.debentures.copper}  Tin: {currentMerchant.debentures.tin}</p>}
+            {currentMerchant && currentMerchant.coins && <CoinPurse name="Coins" contents={currentMerchant.coins}></CoinPurse>}
+            {currentMerchant && currentMerchant.debentures && <CoinPurse name="Debentures" contents={currentMerchant.debentures}></CoinPurse>}
         </span>
     )
 }
