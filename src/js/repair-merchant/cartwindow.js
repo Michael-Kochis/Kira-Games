@@ -1,15 +1,17 @@
 import React from 'react'
 import {Cart} from './cart'
 import {FlexBox} from '../common/flexbox'
+import { MerchantIcon } from './merchant-icon'
 
-function CartWindow({children}) {
+function CartWindow() {
     return (
         <div>
-            {children}
             <FlexBox>
-                <FlexBox className="w-30" color="gray">1</FlexBox>
+                <FlexBox className="w-30" color="gray">
+                    <MerchantIcon></MerchantIcon>
+                </FlexBox>
                 <Cart className="w-30"></Cart>
-                <FlexBox className="w-30" color='gray'>5</FlexBox>
+                <FlexBox className="w-30" color='gray'>Tasks</FlexBox>
             </FlexBox>
         </div>
     )

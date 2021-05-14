@@ -8,12 +8,33 @@ function FlexBox(props) {
         color: black;
         display: flex;
         flex-flow: row nowrap;
+        align-items: center;
+        align-content: center;
         justify-content: center;
-        min-height: 3rem;
+        text-align: center;
+        text-justify: center;
+        min-height: 5rem;
+        border-top: 0.3rem;
     `
 
+    const drop = (event) => {
+        event.preventDefault();
+        console.log("Drop: " + event);
+        const whatDropped = event.dataTransfer.getData("id");
+        const moveThis = document.getElementById(whatDropped);
+        const target = event.target;
+        if (target.classList.contains("cart-zone")) {
+            target.appendChild(moveThis);
+        }
+    }
+
+    const dragOver = (event) => {
+        event.preventDefault();
+
+    }
+
     return (
-        <BoxArea>
+        <BoxArea className={props.className} onDrop={drop} onDragOver={dragOver}>
             {props.children}
         </BoxArea>
     )
