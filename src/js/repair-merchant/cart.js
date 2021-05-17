@@ -7,6 +7,7 @@ function Cart() {
         display: flex;
         flex-flow: column nowrap;
         border-top: 1rem;
+        margin-top: 2rem;
     `;
 
     const drop = (event) => {
