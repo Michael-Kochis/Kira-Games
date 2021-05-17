@@ -18,9 +18,13 @@ function StoryBoard(props) {
     const storyRef = useRef([]);
 
     function addStoryAward(award) {
-        if (award.debentures) {
-            addDebentures(award.debentures);
-        }
+        if (currentMerchant.story.includes("RM-Intro")) {
+            // do nothing, story already awarded.
+        } else {
+            if (award.debentures) {
+                addDebentures(award.debentures);
+            }
+        }   
     }
 
     function backStory() {
@@ -33,8 +37,8 @@ function StoryBoard(props) {
 
     function finishStory() {
         if (currentMerchant) {
-            addStory("RM-Intro");
             addStoryAward(storyAward);
+            addStory("RM-Intro");
         }
         history.push(`/repair-merchant/${merchantName}`);
     }

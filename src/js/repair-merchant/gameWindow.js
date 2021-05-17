@@ -4,11 +4,14 @@ import {StoryBoard} from '../story/storyBoard'
 import { useMerchant } from '../context/merchantContext'
 
 function RMMainGame(props) {
+    let urlParams = new URLSearchParams(window.location.search);
+    let replayStory = urlParams.get('replayStory');
     let merchant = props.merchant;
     let {currentMerchant} = useMerchant();
     let mode = "";
 
-    if (currentMerchant.story && currentMerchant.story.includes("RM-Intro")) {
+    if (!(replayStory && (replayStory.includes("true")) ) &&
+        (currentMerchant.story && currentMerchant.story.includes("RM-Intro")) )  {
         mode = "game";
     } else {
         mode = "story";
