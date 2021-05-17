@@ -1,18 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
-import {useMerchant} from '../context/merchantContext'
 
-function MerchantIcon(props) {
+function TaskIcon(props) {
+    let color = "navy";
+
+    if (props.type.includes("leather")) {
+        color = "sienna";
+    } else if (props.type.includes("metal")) {
+        color = "silver";
+    } else if (props.type.includes("wood")) {
+        color = "blanchedalmond";
+    }
+
     const Outline = styled.div `
-        border: 2px solid navy;
-        color: navy;
+        border: 2px solid ${color};
+        color: black;
         background-color: transparent;
         width: 50%;
-        order: -5;
     `
-    const {currentMerchant } = useMerchant();
 
-    const dragStart = (event) => {
+const dragStart = (event) => {
         const target = event.target;
 
         event.dataTransfer.setData('id', target.id);
@@ -24,17 +31,17 @@ function MerchantIcon(props) {
 
     return (
         <Outline
-            id={currentMerchant.name}
+            id={props.id}
             onDragStart={dragStart}
             onDragOver={dragOver}
             draggable="true"
-            className="merchant worker"
+            className={props.className}
         >
-            {currentMerchant.name}
+            {props.children}
         </Outline>
     )
 }
 
 export {
-    MerchantIcon
+    TaskIcon
 }

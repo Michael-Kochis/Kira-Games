@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import {Cart} from './cart'
 import {FlexBox} from '../common/flexbox'
 import { MerchantIcon } from './merchant-icon'
+import { TaskIcon } from './task-icon'
 
 function CartWindow() {
     let history = useHistory();
@@ -22,7 +23,11 @@ function CartWindow() {
                     <MerchantIcon></MerchantIcon>
                 </FlexBox>
                 <Cart className="w-30"></Cart>
-                <FlexBox className="w-30" color='gray'>Tasks</FlexBox>
+                <FlexBox className="w-30" color='gray'>
+                    <TaskIcon id="task0" type="zone-leather" className="task-leather">Bootlace</TaskIcon>
+                    <TaskIcon id="task1" type="zone-metal" className="task-metal">Straighten Nail</TaskIcon>
+                    <TaskIcon id="task2" type="zone-wood" className="task-wood">Dowel Rod</TaskIcon>
+                </FlexBox>
             </FlexBox>
             <Button onClick={replay} >Replay Story</Button>
         </div>

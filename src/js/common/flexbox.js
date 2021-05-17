@@ -17,18 +17,29 @@ function FlexBox(props) {
         border-top: 0.3rem;
     `
 
-    const drop = (event) => {
-        event.preventDefault();
-        console.log("Drop: " + event);
-        const whatDropped = event.dataTransfer.getData("id");
-        const moveThis = document.getElementById(whatDropped);
-        const target = event.target;
-        if (target.classList.contains("cart-zone")) {
+const drop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const whatDropped = event.dataTransfer.getData("id");
+    const moveThis = document.getElementById(whatDropped);
+    const target = event.target;
+    if (target.classList.contains("cart-zone")) {
+        if(moveThis.classList.contains("worker")) { 
             target.appendChild(moveThis);
+        } else {
+            let dropList = moveThis.classList;
+            let targetList = target.classList;
+            if ((dropList.contains("task-leather") && targetList.contains("zone-leather"))
+                || (dropList.contains("task-metal") && targetList.contains("zone-metal"))
+                || (dropList.contains("task-wood") && targetList.contains("zone-wood"))  ){
+                target.appendChild(moveThis);
+            }
         }
     }
+}
 
-    const dragOver = (event) => {
+const dragOver = (event) => {
         event.preventDefault();
 
     }
