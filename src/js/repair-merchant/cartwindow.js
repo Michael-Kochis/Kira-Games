@@ -24,11 +24,12 @@ function CartWindow() {
                 </FlexBox>
                 <Cart className="w-30"></Cart>
                 <FlexBox className="w-30" color='gray'>
-                    <TaskIcon id="task0" type="zone-leather" className="task-leather">Bootlace</TaskIcon>
-                    <TaskIcon id="task1" type="zone-metal" className="task-metal">Straighten Nail</TaskIcon>
-                    <TaskIcon id="task2" type="zone-wood" className="task-wood">Dowel Rod</TaskIcon>
+                    <TaskIcon id="task0" type="zone-leather" className="task task-leather">Bootlace</TaskIcon>
+                    <TaskIcon id="task1" type="zone-metal" className="task task-metal">Straighten Nail</TaskIcon>
+                    <TaskIcon id="task2" type="zone-wood" className="task task-wood">Dowel Rod</TaskIcon>
                 </FlexBox>
             </FlexBox>
+            <div id="cart-message"></div>
             <Button onClick={replay} >Replay Story</Button>
         </div>
     )

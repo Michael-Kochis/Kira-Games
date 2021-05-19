@@ -17,6 +17,20 @@ function FlexBox(props) {
         border-top: 0.3rem;
     `
 
+    const checkBox = (target) => {
+        let workChild = target.querySelector(".worker");
+        let taskChild = target.querySelector(".task");
+        if ((workChild) && (taskChild)) {
+            let message = document.getElementById("cart-message")
+            message.textContent = (workChild.id + " started work on " + taskChild.textContent);
+            setTimeout(() => {
+                message.textContent = (workChild.id + " finished work on " + taskChild.textContent);
+                target.removeChild(taskChild);
+            }, 5000);
+            setTimeout(() => {message.textContent = ""}, 10000);
+        }
+    }
+
 const drop = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -36,6 +50,7 @@ const drop = (event) => {
                 target.appendChild(moveThis);
             }
         }
+        checkBox(target);
     }
 }
 

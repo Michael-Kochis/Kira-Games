@@ -12,6 +12,12 @@ function MerchantIcon(props) {
     `
     const {currentMerchant } = useMerchant();
 
+    const dragEnd = (event) => {
+        const target = event.target;
+        target.draggable = false;
+        setTimeout(() => {target.draggable = true}, 5000);
+    }
+
     const dragStart = (event) => {
         const target = event.target;
 
@@ -25,6 +31,7 @@ function MerchantIcon(props) {
     return (
         <Outline
             id={currentMerchant.name}
+            onDragEnd={dragEnd}
             onDragStart={dragStart}
             onDragOver={dragOver}
             draggable="true"
