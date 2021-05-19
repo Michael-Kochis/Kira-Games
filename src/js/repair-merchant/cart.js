@@ -10,26 +10,15 @@ function Cart() {
         margin-top: 2rem;
     `;
 
-    const drop = (event) => {
-        event.preventDefault();
-        console.log("Drop: " + event);
-        const whatDropped = event.dataTransfer.getData("id");
-        const moveThis = document.getElementById(whatDropped);
-        const target = event.target;
-        if (target.classList.includes("cart-zone")) {
-            target.appendChild(moveThis);
-        }
-    }
-
     const dragOver = (event) => {
         event.preventDefault();
     }
 
     return (
         <CartBox>
-            <FlexBox id="cart-metal" className="w-100 cart-zone zone-metal" onDrop={drop} onDragOver={dragOver} color='silver'>Smithy</FlexBox>
-            <FlexBox id="cart-wood" className="w-100 cart-zone zone-wood" onDrop={drop} onDragOver={dragOver} color='blanchedalmond'>Lumber</FlexBox>
-            <FlexBox id="cart-leather" className="w-100 cart-zone zone-leather" onDrop={drop} onDragOver={dragOver} color='sienna'>Leather</FlexBox>
+            <FlexBox id="cart-metal" className="w-100 cart-zone zone-metal" onDragOver={dragOver} color='silver'></FlexBox>
+            <FlexBox id="cart-wood" className="w-100 cart-zone zone-wood" onDragOver={dragOver} color='blanchedalmond'></FlexBox>
+            <FlexBox id="cart-leather" className="w-100 cart-zone zone-leather" onDragOver={dragOver} color='sienna'></FlexBox>
         </CartBox>
     )
 }

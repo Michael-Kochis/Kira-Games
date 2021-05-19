@@ -8,12 +8,18 @@ function MerchantIcon(props) {
         color: navy;
         background-color: transparent;
         width: 50%;
+        order: -5;
     `
     const {currentMerchant } = useMerchant();
 
+    const dragEnd = (event) => {
+        const target = event.target;
+        target.draggable = false;
+        setTimeout(() => {target.draggable = true}, 5000);
+    }
+
     const dragStart = (event) => {
         const target = event.target;
-        console.log("Dragging: "+ event.target.id);
 
         event.dataTransfer.setData('id', target.id);
     }
@@ -25,9 +31,11 @@ function MerchantIcon(props) {
     return (
         <Outline
             id={currentMerchant.name}
+            onDragEnd={dragEnd}
             onDragStart={dragStart}
             onDragOver={dragOver}
             draggable="true"
+            className="merchant worker"
         >
             {currentMerchant.name}
         </Outline>

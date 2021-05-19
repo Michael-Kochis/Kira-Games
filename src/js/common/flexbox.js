@@ -17,18 +17,44 @@ function FlexBox(props) {
         border-top: 0.3rem;
     `
 
-    const drop = (event) => {
-        event.preventDefault();
-        console.log("Drop: " + event);
-        const whatDropped = event.dataTransfer.getData("id");
-        const moveThis = document.getElementById(whatDropped);
-        const target = event.target;
-        if (target.classList.contains("cart-zone")) {
-            target.appendChild(moveThis);
+    const checkBox = (target) => {
+        let workChild = target.querySelector(".worker");
+        let taskChild = target.querySelector(".task");
+        if ((workChild) && (taskChild)) {
+            let message = document.getElementById("cart-message")
+            message.textContent = (workChild.id + " started work on " + taskChild.textContent);
+            setTimeout(() => {
+                message.textContent = (workChild.id + " finished work on " + taskChild.textContent);
+                target.removeChild(taskChild);
+            }, 5000);
+            setTimeout(() => {message.textContent = ""}, 10000);
         }
     }
 
-    const dragOver = (event) => {
+const drop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const whatDropped = event.dataTransfer.getData("id");
+    const moveThis = document.getElementById(whatDropped);
+    const target = event.target;
+    if (target.classList.contains("cart-zone")) {
+        if(moveThis.classList.contains("worker")) { 
+            target.appendChild(moveThis);
+        } else {
+            let dropList = moveThis.classList;
+            let targetList = target.classList;
+            if ((dropList.contains("task-leather") && targetList.contains("zone-leather"))
+                || (dropList.contains("task-metal") && targetList.contains("zone-metal"))
+                || (dropList.contains("task-wood") && targetList.contains("zone-wood"))  ){
+                target.appendChild(moveThis);
+            }
+        }
+        checkBox(target);
+    }
+}
+
+const dragOver = (event) => {
         event.preventDefault();
 
     }
