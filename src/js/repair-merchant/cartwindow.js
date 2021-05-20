@@ -19,11 +19,11 @@ function CartWindow() {
     return (
         <div>
             <FlexBox>
-                <FlexBox className="w-30" color="gray">
+                <FlexBox className="zone-worker w-30" color="gray">
                     <MerchantIcon></MerchantIcon>
                 </FlexBox>
                 <Cart className="w-30"></Cart>
-                <FlexBox className="w-30" color='gray'>
+                <FlexBox className="zone-task w-30" color='white'>
                     <TaskIcon id="task0" type="zone-leather" className="task task-leather">Bootlace</TaskIcon>
                     <TaskIcon id="task1" type="zone-metal" className="task task-metal">Straighten Nail</TaskIcon>
                     <TaskIcon id="task2" type="zone-wood" className="task task-wood">Dowel Rod</TaskIcon>

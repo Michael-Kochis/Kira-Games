@@ -71,9 +71,11 @@ function MerchantProvider({children}) {
 
     const value = {
         currentMerchant,
+        setCurrentMerchant,
         addDebentures,
         addStory,
-        loadMerchant
+        loadMerchant,
+        saveMerchant
     }
 
     return (
