@@ -51,6 +51,14 @@ const drop = (event) => {
             }
         }
         checkBox(target);
+    } else if (target.classList.contains("zone-worker")) {
+        if (moveThis.classList.contains("worker")) {
+            target.appendChild(moveThis);
+        }
+    } else if (target.classList.contains("zone-task")) {
+        if (moveThis.classList.contains("task")) {
+            target.appendChild(moveThis);
+        }
     }
 }
 
