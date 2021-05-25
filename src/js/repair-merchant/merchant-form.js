@@ -11,23 +11,24 @@ function MerchantForm() {
         skills: {leather:3, lumber: 3, smith: 3},
         story: {}
     }
-    const [form, setForm] = useState({initialValues});
+    const [form, setForm] = useState(initialValues);
     let {currentMerchant, setCurrentMerchant} = useMerchant(); 
     const {saveMerchant} = useMerchant();
 
     useEffect(() => {
-        if (currentMerchant !== null ) {
+        if ((currentMerchant !== null ) && (currentMerchant !== undefined)) {
             setForm(currentMerchant);
         } else {
             setForm(initialValues);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentMerchant]);
+    }, []);
 
     const handleChange = (event) => {
         const {name, type, value, checked} = event.target;
         const updateData = (type === 'checkbox')?checked:value;
-        setForm({...form, [name]: updateData}); 
+        setForm({...form, [name]: updateData});
+        console.log(form); 
     }
 
     function saveFormMerchant(event) {
@@ -37,11 +38,11 @@ function MerchantForm() {
     }
 
     return (
-        <form onSubmit={saveFormMerchant}>
-            <label>Merchant Name
+        <div id="merchant-form" onSubmit={saveFormMerchant}>
+            {form && <label>Merchant Name
                 <input name="name" type="text" value={form.name} onChange={handleChange} />
-            </label>
-        </form>
+            </label>}
+        </div> 
     )
 }
 

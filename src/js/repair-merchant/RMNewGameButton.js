@@ -5,6 +5,7 @@ import {useAuth} from '../context/authContext'
 import {firestore} from '../firebase'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
+import { MerchantForm } from './merchant-form'
 
 function RMNewGameButton() {
     const {currentUser} = useAuth();
@@ -42,11 +43,7 @@ function RMNewGameButton() {
             <Modal show={modalOpen} onHide={closeModal} className="modal-top">
                 <Form onSubmit={handleSubmit} className="w-40 d-flex justify-content-center align-items-center">
                     <Modal.Body className="d-flex justify-content-center align-items-center">
-                        <Form.Group className="d-flex justify-content-center align-items-center">
-                            <Form.Label className="rt-2">Avatar Name</Form.Label>
-                            <Form.Control type="text" required value={name}  
-                                className="rt-2 tall-2" onChange={e => setName(e.target.value)}/>
-                        </Form.Group>
+                        <MerchantForm></MerchantForm>
                     </Modal.Body>
                     <Modal.Footer className="d-flex">
                         <Button variant="secondary" onClick={closeModal} >Close</Button>
