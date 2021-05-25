@@ -40,6 +40,7 @@ const dragStart = (event) => {
             onDragOver={dragOver}
             draggable="true"
             className={className}
+            index={index}
         >
             {props.children}
         </Outline>

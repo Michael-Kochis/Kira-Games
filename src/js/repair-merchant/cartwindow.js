@@ -5,24 +5,11 @@ import {Cart} from './cart'
 import {FlexBox} from '../common/flexbox'
 import { MerchantIcon } from './merchant-icon'
 import { TaskIcon } from './task-icon'
+import { useTask } from '../context/taskContext'
 
 function CartWindow() {
     let history = useHistory();
-    let taskList = [
-        {
-          name: "Bootstrap",
-          type: "leather",
-          index: 0
-        },{
-          name: "Straighten Nail",
-          type: "metal",
-          index: 1
-        },{
-          name: "Dowel Rod",
-          type: "wood",
-          index: 2
-        }
-    ]
+    let { isEmpty, refresh, tasks } = useTask();
 
     function replay() {
         history.push({
@@ -39,15 +26,16 @@ function CartWindow() {
                 </FlexBox>
                 <Cart className="w-30"></Cart>
                 <FlexBox className="zone-task w-30" color='gray'>
-                    {taskList.map((item) => {
-                        return <TaskIcon key={item.index} 
-                            index={item.index} taskType={item.type}>
+                    {isEmpty()?"No tasks remain" : tasks.map((item, index) => {
+                        return <TaskIcon key={index} 
+                            index={index} taskType={item.type}>
                             {item.name}
                         </TaskIcon>
                     })}
                 </FlexBox>
             </FlexBox>
             <div id="cart-message"></div>
+            {isEmpty() && <Button onClick={refresh}>Next Task Set</Button>}
             <Button onClick={replay} >Replay Story</Button>
         </div>
     )

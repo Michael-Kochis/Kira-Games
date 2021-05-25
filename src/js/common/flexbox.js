@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTask } from '../context/taskContext'
 
 function FlexBox(props) {
+    const { removeTask } = useTask();
+
     const BoxArea = styled.div`
         border-radius: 1rem;
         background-color: ${props.color};
@@ -25,7 +28,9 @@ function FlexBox(props) {
             message.textContent = (workChild.id + " started work on " + taskChild.textContent);
             setTimeout(() => {
                 message.textContent = (workChild.id + " finished work on " + taskChild.textContent);
+
                 target.removeChild(taskChild);
+                removeTask(taskChild.id);
             }, 5000);
             setTimeout(() => {message.textContent = ""}, 10000);
         }
@@ -62,7 +67,7 @@ const drop = (event) => {
     }
 }
 
-const dragOver = (event) => {
+    const dragOver = (event) => {
         event.preventDefault();
 
     }
