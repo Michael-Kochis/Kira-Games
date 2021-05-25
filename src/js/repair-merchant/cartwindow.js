@@ -8,6 +8,21 @@ import { TaskIcon } from './task-icon'
 
 function CartWindow() {
     let history = useHistory();
+    let taskList = [
+        {
+          name: "Bootstrap",
+          type: "leather",
+          index: 0
+        },{
+          name: "Straighten Nail",
+          type: "metal",
+          index: 1
+        },{
+          name: "Dowel Rod",
+          type: "wood",
+          index: 2
+        }
+    ]
 
     function replay() {
         history.push({
@@ -23,10 +38,13 @@ function CartWindow() {
                     <MerchantIcon></MerchantIcon>
                 </FlexBox>
                 <Cart className="w-30"></Cart>
-                <FlexBox className="zone-task w-30" color='white'>
-                    <TaskIcon id="task0" type="zone-leather" className="task task-leather">Bootlace</TaskIcon>
-                    <TaskIcon id="task1" type="zone-metal" className="task task-metal">Straighten Nail</TaskIcon>
-                    <TaskIcon id="task2" type="zone-wood" className="task task-wood">Dowel Rod</TaskIcon>
+                <FlexBox className="zone-task w-30" color='gray'>
+                    {taskList.map((item) => {
+                        return <TaskIcon key={item.index} 
+                            index={item.index} taskType={item.type}>
+                            {item.name}
+                        </TaskIcon>
+                    })}
                 </FlexBox>
             </FlexBox>
             <div id="cart-message"></div>

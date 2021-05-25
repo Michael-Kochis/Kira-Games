@@ -3,14 +3,18 @@ import styled from 'styled-components'
 
 function TaskIcon(props) {
     let color = "navy";
+    const { index, taskType } = props;
 
-    if (props.type.includes("leather")) {
+    if (taskType.includes("leather")) {
         color = "sienna";
-    } else if (props.type.includes("metal")) {
+    } else if (taskType.includes("metal")) {
         color = "silver";
-    } else if (props.type.includes("wood")) {
+    } else if (taskType.includes("wood")) {
         color = "blanchedalmond";
     }
+
+    let idString = `task-${index}`;
+    let className = `task task-${taskType}`
 
     const Outline = styled.div `
         border: 2px solid ${color};
@@ -31,11 +35,11 @@ const dragStart = (event) => {
 
     return (
         <Outline
-            id={props.id}
+            id={idString}
             onDragStart={dragStart}
             onDragOver={dragOver}
             draggable="true"
-            className={props.className}
+            className={className}
         >
             {props.children}
         </Outline>
