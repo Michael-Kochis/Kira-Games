@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import '../icon.css'
 
 function TaskIcon(props) {
     let color = "navy";
@@ -14,14 +14,7 @@ function TaskIcon(props) {
     }
 
     let idString = `task-${index}`;
-    let className = `task task-${taskType}`
-
-    const Outline = styled.div `
-        border: 2px solid ${color};
-        color: black;
-        background-color: transparent;
-        width: 50%;
-    `
+    let className = `task task-${taskType} ${color}`
 
 const dragStart = (event) => {
         const target = event.target;
@@ -34,7 +27,7 @@ const dragStart = (event) => {
     }
 
     return (
-        <Outline
+        <div
             id={idString}
             onDragStart={dragStart}
             onDragOver={dragOver}
@@ -43,7 +36,7 @@ const dragStart = (event) => {
             index={index}
         >
             {props.children}
-        </Outline>
+        </div>
     )
 }
 

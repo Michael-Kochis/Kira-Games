@@ -25,10 +25,10 @@ function CartWindow() {
                     <MerchantIcon></MerchantIcon>
                 </FlexBox>
                 <Cart className="w-30"></Cart>
-                <FlexBox className="zone-task w-30" color='gray'>
-                    {isEmpty()?"No tasks remain" : tasks.map((item, index) => {
-                        return <TaskIcon key={index} 
-                            index={index} taskType={item.type}>
+                <FlexBox id="zone-task" className="zone-task w-30" color='gray'>
+                    {isEmpty()?"No tasks remain" : tasks.map((item) => {
+                        return <TaskIcon key={item.nombre} 
+                            index={item.nombre} taskType={item.type}>
                             {item.name}
                         </TaskIcon>
                     })}

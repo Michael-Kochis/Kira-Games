@@ -1,35 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
+import '../flexbox.css'
 import { useTask } from '../context/taskContext'
 
 function FlexBox(props) {
     const { removeTask } = useTask();
 
-    const BoxArea = styled.div`
-        border-radius: 1rem;
-        background-color: ${props.color};
-        color: black;
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-        text-align: center;
-        text-justify: center;
-        min-height: 5rem;
-        border-top: 0.3rem;
-    `
-
     const checkBox = (target) => {
         let workChild = target.querySelector(".worker");
         let taskChild = target.querySelector(".task");
+        let taskArea = document.getElementById("zone-task");
         if ((workChild) && (taskChild)) {
             let message = document.getElementById("cart-message")
             message.textContent = (workChild.id + " started work on " + taskChild.textContent);
             setTimeout(() => {
                 message.textContent = (workChild.id + " finished work on " + taskChild.textContent);
-
-                target.removeChild(taskChild);
+                taskArea.appendChild(taskChild);
                 removeTask(taskChild.id);
             }, 5000);
             setTimeout(() => {message.textContent = ""}, 10000);
@@ -72,10 +57,13 @@ const drop = (event) => {
 
     }
 
+    const neoClass = "flexbox " + props.color + " " + props.className;
+
     return (
-        <BoxArea className={props.className} onDrop={drop} onDragOver={dragOver}>
+        <div id={props.id} className={neoClass} onDrop={drop} 
+            onDragOver={dragOver}>
             {props.children}
-        </BoxArea>
+        </div>
     )
 }
 
