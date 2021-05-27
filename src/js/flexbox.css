@@ -1,0 +1,32 @@
+.blanchedalmond {
+    background-color: blanchedalmond;
+}
+
+.cart {
+    display: flex;
+    flex-flow: column nowrap;
+    border-top: 1rem;
+    margin-top: 2rem;
+}
+
+.flexbox { 
+    border-radius: 1rem;
+    color: black;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    text-justify: center;
+    min-height: 5rem;
+    border-top: 0.3rem;
+}
+
+.sienna {
+    background-color: sienna;
+}
+
+.silver {
+    background-color: silver;
+}

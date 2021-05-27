@@ -41,9 +41,8 @@ function TaskProvider({children}) {
 
     const removeTask = (index) => {
         const key = index.replace("task-", "");
-        console.log("Removing task " + key);
-        setTasks(tasks.filter((task, index) => {
-            return (index !== parseInt(key) );
+        setTasks(tasks.filter((task) => {
+            return (task.nombre !== parseInt(key) );
         }) );
     }
 
@@ -57,6 +56,7 @@ function TaskProvider({children}) {
 
     useEffect(() => {
         loadTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

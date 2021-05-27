@@ -1,0 +1,26 @@
+.blanchedalmond {
+    border: 2px solid blanchedalmond;
+}
+
+.sienna {
+    border: 2px solid sienna;
+}
+
+.silver {
+    border: 2px solid silver;
+}
+
+.task {
+    color: black;
+    background-color: transparent;
+    width: 50%;
+
+}
+
+.worker {
+    border: 2px solid navy;
+    color: navy;
+    background-color: transparent;
+    width: 50%;
+    order: -5;
+}

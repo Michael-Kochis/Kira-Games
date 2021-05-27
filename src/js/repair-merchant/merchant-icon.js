@@ -1,15 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import {useMerchant} from '../context/merchantContext'
 
 function MerchantIcon(props) {
-    const Outline = styled.div `
-        border: 2px solid navy;
-        color: navy;
-        background-color: transparent;
-        width: 50%;
-        order: -5;
-    `
     const {currentMerchant } = useMerchant();
 
     const dragEnd = (event) => {
@@ -29,7 +21,7 @@ function MerchantIcon(props) {
     }
 
     return (
-        <Outline
+        <div
             id={currentMerchant.name}
             onDragEnd={dragEnd}
             onDragStart={dragStart}
@@ -38,7 +30,7 @@ function MerchantIcon(props) {
             className="merchant worker"
         >
             {currentMerchant.name}
-        </Outline>
+        </div>
     )
 }
 
