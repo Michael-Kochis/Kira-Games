@@ -1,4 +1,4 @@
-import {React} from 'react'
+import React, { useState } from 'react'
 import { CartWindow } from '../repair-merchant/cartwindow'
 import {StoryBoard} from '../story/storyBoard'
 import { useMerchant } from '../context/merchantContext'
@@ -8,13 +8,13 @@ function RMMainGame(props) {
     let replayStory = urlParams.get('replayStory');
     let merchant = props.merchant;
     let {currentMerchant} = useMerchant();
-    let mode = "";
+    let [mode, setMode] = useState("story");
 
-    if (!(replayStory && (replayStory.includes("true")) ) &&
-        (currentMerchant.story && currentMerchant.story.includes("RM-Intro")) )  {
-        mode = "game";
-    } else {
-        mode = "story";
+    if (mode === "story" ) { 
+        if (!(replayStory && (replayStory.includes("true")) ) &&
+            (currentMerchant.story && currentMerchant.story.includes("RM-Intro")) )  {
+            setMode("game");
+        } 
     }
 
     if (mode === 'story') {
@@ -24,10 +24,16 @@ function RMMainGame(props) {
                 {!merchant && <p>No merchant found!</p>}
             </div>
         )    
+    } else if (mode === "map") { 
+        return (
+            <canvas id="RMmap" class="rm-map">
+                This is the map
+            </canvas>
+        )
     } else { 
         return (
             <div>
-                {merchant && (mode === "game") && <CartWindow>This is the CartWindow</CartWindow>}
+                {merchant && (mode === "game") && <CartWindow setMode={setMode}>This is the CartWindow</CartWindow>}
             </div>
                 
         )

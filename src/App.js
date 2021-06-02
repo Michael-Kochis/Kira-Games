@@ -22,7 +22,7 @@ function App() {
               <TaskProvider>
                 <MerchantProvider>
                     <Switch>
-                    {/* Kira Games */}
+                    {/* Kira Games - Repair Merchant */}
                       <PrivateRoute exact path="/" component={RMDashboard} />
                       <PrivateRoute path="/repair-merchant/:name" component={RMGame} />
                     
