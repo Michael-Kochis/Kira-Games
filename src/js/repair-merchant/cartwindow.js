@@ -1,15 +1,20 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import {Cart} from './cart'
-import {FlexBox} from '../common/flexbox'
+import { Cart } from './cart'
+import { FlexBox } from '../common/flexbox'
 import { MerchantIcon } from './merchant-icon'
 import { TaskIcon } from './task-icon'
 import { useTask } from '../context/taskContext'
 
-function CartWindow() {
+function CartWindow(props) {
     let history = useHistory();
     let { isEmpty, refresh, tasks } = useTask();
+    const { setMode } = props;
+
+    function goMap() {
+        setMode("map");
+    }
 
     function replay() {
         history.push({
@@ -36,6 +41,7 @@ function CartWindow() {
             </FlexBox>
             <div id="cart-message"></div>
             {isEmpty() && <Button onClick={refresh}>Next Task Set</Button>}
+            {isEmpty() && <Button onClick={goMap}>World Map</Button>}
             <Button onClick={replay} >Replay Story</Button>
         </div>
     )

@@ -10,7 +10,7 @@ function ChatApp(props) {
     const dummy = useRef();
     const name = props.id;
     const messagesRef = database.messages;
-    const query = messagesRef.orderBy('timeStamp').limit(25);
+    const query = messagesRef.orderBy('timeStamp', 'desc').limit(25);
   
     const [messages] = useCollectionData(query, {idField: 'id'});
     const [formValue, setFormValue] = useState('');
@@ -30,10 +30,11 @@ function ChatApp(props) {
       dummy.current.scrollIntoView({ behavior: 'smooth' });
     }
   
-    return (<span className="chat-box half-screen">
+    return (
+    <span className="chat-box half-screen">
       <main>
   
-        <div>
+        <div className="chat-box-message">
             {messages && messages.map(msg => <ChatMessage key={msg.id} owner={msg.owner} message={msg} name={msg.name}/>)}
         </div>
   

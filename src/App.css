@@ -68,6 +68,14 @@ label {
   width: 40%;
   border-radius: 1rem;
   font-size: 1rem;
+  max-height: 30vh;
+}
+
+.chat-box-message {
+  background-color: dimgray;
+  border-radius: 1rem;
+  max-height: 30vh;
+  overflow: auto;
 }
 
 .fa-plus-square {
@@ -117,6 +125,13 @@ label {
   border-radius: 1rem;
 }
 
+.rm-map {
+  border: 2px solid black;
+  background-color: snow;
+  width: 90%;
+  height: 40vh;
+}
+
 .sent {
   background-color: rgb(37, 65, 156);
   text-align: left;
@@ -157,3 +172,12 @@ label {
   justify-content: center;
   width: 100%;
 }
+
+#zone-task {
+  background-color: dimgray;
+  display: flex;
+  flex-flow: row wrap;
+  max-height: 40vh;
+  overflow: auto;
+}
+
