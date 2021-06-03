@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CartWindow } from '../repair-merchant/cartwindow'
+import { MapCanvas } from '../common/map/map-canvas'
 import {StoryBoard} from '../story/storyBoard'
 import { useMerchant } from '../context/merchantContext'
 
@@ -26,9 +27,7 @@ function RMMainGame(props) {
         )    
     } else if (mode === "map") { 
         return (
-            <canvas id="RMmap" class="rm-map">
-                This is the map
-            </canvas>
+            <MapCanvas />
         )
     } else { 
         return (

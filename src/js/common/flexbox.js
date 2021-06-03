@@ -16,8 +16,8 @@ function FlexBox(props) {
                 message.textContent = (workChild.id + " finished work on " + taskChild.textContent);
                 taskArea.appendChild(taskChild);
                 removeTask(taskChild.id);
-            }, 5000);
-            setTimeout(() => {message.textContent = ""}, 10000);
+            }, 1250);
+            setTimeout(() => {message.textContent = ""}, 2500);
         }
     }
 
