@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { CartWindow } from '../repair-merchant/cartwindow'
-import { MapCanvas } from '../common/map/map-canvas'
-import {StoryBoard} from '../story/storyBoard'
-import { useMerchant } from '../context/merchantContext'
+import React, { useState } from 'react';
+import { CartWindow } from '../repair-merchant/cartwindow';
+import { MapCanvas } from '../common/map/map-canvas';
+import StoryBoard from '../story/storyBoard';
+import { useMerchant } from '../context/merchantContext';
 
 function RMMainGame(props) {
     let urlParams = new URLSearchParams(window.location.search);

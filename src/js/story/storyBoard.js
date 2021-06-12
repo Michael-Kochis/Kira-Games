@@ -5,13 +5,12 @@ import '../../App.css'
 import {database} from '../firebase'
 import {useMerchant} from '../context/merchantContext'
 
+import { connect } from 'react-redux'
+import { endStory, setIndex, setStory, startStory } from '../actions/storyActions'
+
 function StoryBoard(props) {
-    let [story, setStory] = useState([]);
     let [storyAward, setStoryAward] = useState();
-    let [endStory, setEndStory] = useState(false);
-    let [startStory, setStartStory] = useState(true);
     let history = useHistory();
-    let [index, setIndex] = useState(0);
     let {addDebentures, addStory, currentMerchant} = useMerchant();
     let name = props.id;
     let merchantName = props.merchant;
@@ -28,11 +27,7 @@ function StoryBoard(props) {
     }
 
     function backStory() {
-        setEndStory(false);
-        setIndex(--index);
-        if (index === 0) {
-            setStartStory(true);
-        }
+        props.setIndex(props.story.index - 1);
     }
 
     function finishStory() {
@@ -48,10 +43,9 @@ function StoryBoard(props) {
             await database.games.doc(`Repair-Merchant`).collection(`story`)
             .doc(`${name}`).get().then(doc => { 
                 if (doc.exists) { 
-                    story = doc.data().story;
-                    setStoryAward(doc.data().awards);
+                   setStoryAward(doc.data().awards);
                     storyAward = doc.data().awards;
-                    setStory(story.map((item) => {
+                    props.setStory(doc.data().story.map((item) => {
                         if (item.speaker === "merchant") {
                             item.speaker = merchantName;
                         }
@@ -65,15 +59,11 @@ function StoryBoard(props) {
         } catch (error) {
             alert(error);
         }
-        return story;
+        return props.story.book;
     }
 
     function nextStory() {
-        setIndex(++index);
-        setStartStory(false);
-        if (index+1 >= story.length) {
-            setEndStory(true);
-        }
+        props.setIndex(props.story.index + 1);
     }
 
     useEffect(() => { 
@@ -83,7 +73,9 @@ function StoryBoard(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storyRef])
 
-    let currentStory = story[index];
+    let currentStory = props.story.book[props.story.index];
+    let startStory = props.story.isAtStart;
+    let endStory = props.story.isAtEnd;
 
     return (
         <div id="story-board">
@@ -97,6 +89,11 @@ function StoryBoard(props) {
     )
 }
 
-export {
-    StoryBoard
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+
+export default connect(mapStateToProps, { endStory, setIndex, setStory, startStory})(StoryBoard)
