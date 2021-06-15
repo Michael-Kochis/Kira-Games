@@ -10,7 +10,7 @@ function useMerchant() {
 }
 
 function MerchantProvider({children}) {
-    let [currentMerchant, setCurrentMerchant] = useState();
+    let [currentMerchant, setCurrentMerchant] = useState({});
     let {currentUser} = useAuth();
     let loadingMerchant = false;
 
@@ -59,14 +59,15 @@ function MerchantProvider({children}) {
         }
     }
 
-    async function saveMerchant() {
+    async function saveMerchant(merchant) {
         await database.persona
             .doc(`${currentUser.uid}`)
             .collection("Games")
-            .doc(`${currentMerchant.name}`)
-            .set(currentMerchant)
-            .then()
-            .catch((error) => alert(error))
+            .doc(`${merchant.name}`)
+            .set(merchant)
+            .then(
+                console.log("Successful save detected.")
+            ).catch((error) => alert(error))
     }
 
     const value = {
