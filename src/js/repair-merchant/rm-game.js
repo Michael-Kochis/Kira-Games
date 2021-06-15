@@ -4,7 +4,7 @@ import '../../App.css'
 import {ChatApp} from '../chatApp/chatApp'
 import {database} from '../firebase'
 import {KiraNavBar} from '../KiraNavBar'
-import {RMCharacterSheet} from './rm-character'
+import RMCharacterSheet from './rm-character'
 import {RMMainGame} from './gameWindow'
 import {useAuth} from '../context/authContext'
 

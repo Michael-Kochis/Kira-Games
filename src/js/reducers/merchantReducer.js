@@ -1,4 +1,4 @@
-import { MERCHANT_NAME, MERCHANT_SAVE } from '../actions/merchantActions'
+import { MERCHANT_NAME, MERCHANT_SAVE, MERCHANT_SET } from '../actions/merchantActions'
 
 const initialState = {
     name: "",
@@ -19,9 +19,13 @@ const merchantReducer = (state = initialState, action) => {
                 name: action.payload
             })
         case (MERCHANT_SAVE):
-            console.log("Save detected.");
-            console.log(state);
+            // console.log("Save detected.");
+            // console.log(state);
             return state;
+        case (MERCHANT_SET):
+            return ({
+                ...action.payload
+            })
         default:
             return state;
     }

@@ -13,7 +13,7 @@ function StoryBoard(props) {
     let history = useHistory();
     let {addDebentures, addStory, currentMerchant} = useMerchant();
     let name = props.id;
-    let merchantName = props.merchant;
+    let merchantName = props.merchant.name;
     const storyRef = useRef([]);
 
     function addStoryAward(award) {
@@ -49,6 +49,7 @@ function StoryBoard(props) {
                         if (item.speaker === "merchant") {
                             item.speaker = merchantName;
                         }
+                        console.log("Replacing merchant name: " + merchantName);
                         item.quote = item.quote.replace("$merchant", merchantName);
 
                         return item; 

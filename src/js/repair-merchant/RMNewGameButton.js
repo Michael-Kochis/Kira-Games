@@ -7,10 +7,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 import  MerchantForm  from './merchant-form'
 import { merchantName, merchantSave } from '../actions/merchantActions'
+import { useAuth } from '../context/authContext'
 
 function RMNewGameButton(props) {
     const [modalOpen, setModalOpen] = useState();
-    const [name, setName] = useState();
+    const [name, setName] = useState("");
+    let {currentUser} = useAuth();
 
     function closeModal() {
         setName("");
@@ -19,7 +21,7 @@ function RMNewGameButton(props) {
     function handleSubmit(e) {
         e.preventDefault();
         props.merchantName(name);
-        props.merchantSave();
+        props.merchantSave(props.merchant, currentUser.uid);
     }
 
     function openModal() {

@@ -1,16 +1,20 @@
-import {React } from 'react'
+import { React } from 'react'
+import { connect } from 'react-redux'
 import '../../App.css'
+
 import { CoinPurse } from '../common/money/coinpurse'
-import  { useMerchant }  from '../context/merchantContext'
+import { useAuth } from '../context/authContext'
+
+import { merchantLoad } from '../actions/merchantActions'
 
 function RMCharacterSheet(props) {
-    let {currentMerchant} = useMerchant();
-    let {loadMerchant} = useMerchant();
+    let currentMerchant = props.merchant;
+    let { currentUser } = useAuth();
     
-    if (currentMerchant === undefined) {
-        loadMerchant(props.id);
+    if (currentMerchant === undefined || currentMerchant.name === "") {
+        props.merchantLoad(props.id, currentUser.uid);
     }
-    
+
     return (
         <span className="character-sheet w-100">
             {currentMerchant && `${currentMerchant.name}`}
@@ -24,6 +28,10 @@ function RMCharacterSheet(props) {
     )
 }
 
-export {
-    RMCharacterSheet
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+export default connect(mapStateToProps, { merchantLoad })(RMCharacterSheet)
