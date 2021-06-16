@@ -75,7 +75,7 @@ function MapCanvas(props) {
     }, [])
 
     return (
-        <canvas id="RMmap" class="rm-map" >
+        <canvas id="RMmap" className="rm-map" >
             This is the map
         </canvas>
     )

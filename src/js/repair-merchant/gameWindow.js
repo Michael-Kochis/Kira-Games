@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import { CartWindow } from '../repair-merchant/cartwindow';
 import { MapCanvas } from '../common/map/map-canvas';
 import StoryBoard from '../story/storyBoard';
-import { useMerchant } from '../context/merchantContext';
 
 function RMMainGame(props) {
     let urlParams = new URLSearchParams(window.location.search);
     let replayStory = urlParams.get('replayStory');
     let merchant = props.merchant;
-    let {currentMerchant} = useMerchant();
     let [mode, setMode] = useState("story");
 
     if (mode === "story" ) { 
         if (!(replayStory && (replayStory.includes("true")) ) &&
-            (currentMerchant.story && currentMerchant.story.includes("RM-Intro")) )  {
+            (merchant.story && merchant.story.includes("RM-Intro")) )  {
             setMode("game");
         } 
     }

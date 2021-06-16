@@ -21,6 +21,10 @@
     border: 2px solid navy;
     color: navy;
     background-color: transparent;
-    width: 50%;
+    width: 10%;
     order: -5;
+}
+
+.worker:hover {
+    width: 30%;
 }

@@ -1,37 +1,27 @@
 import React, {useState} from 'react'
 import {Button, Form, Modal} from 'react-bootstrap'
+import {connect} from 'react-redux'
 import '../../App.css'
-import {useAuth} from '../context/authContext'
-import {firestore} from '../firebase'
+
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
-import { MerchantForm } from './merchant-form'
+import  MerchantForm  from './merchant-form'
+import { merchantName, merchantSave } from '../actions/merchantActions'
+import { useAuth } from '../context/authContext'
 
-function RMNewGameButton() {
-    const {currentUser} = useAuth();
+function RMNewGameButton(props) {
     const [modalOpen, setModalOpen] = useState();
-    const [name, setName] = useState();
+    const [name, setName] = useState("");
+    let {currentUser} = useAuth();
 
     function closeModal() {
         setName("");
         setModalOpen(false);
     }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        firestore.collection("Persona").doc(`${currentUser.uid}`).collection("Games").doc(name).set({name: name,
-            game: "Repair Merchant",
-            XP: 0,
-            honor: 100,
-            coins: {gold: 0, silver: 0, copper: 0, tin: 0},
-            debentures: {gold: 0, silver: 0, copper: 0, tin: 0},
-            skills: {leather:3, lumber: 3, smith: 3},
-            story: {}
-        });
-
-        setName("");
-        closeModal();
+    function handleSubmit(e) {
+        e.preventDefault();
+        props.merchantName(name);
+        props.merchantSave(props.merchant, currentUser.uid);
     }
 
     function openModal() {
@@ -43,12 +33,12 @@ function RMNewGameButton() {
             <Modal show={modalOpen} onHide={closeModal} className="modal-top">
                 <Form onSubmit={handleSubmit} className="w-40 d-flex justify-content-center align-items-center">
                     <Modal.Body className="d-flex justify-content-center align-items-center">
-                        <MerchantForm></MerchantForm>
+                        <MerchantForm setName={setName}></MerchantForm>
                     </Modal.Body>
                     <Modal.Footer className="d-flex">
                         <Button variant="secondary" onClick={closeModal} >Close</Button>
                         <Button variant="success" type="submit" >New Repair Merchant</Button>
-                        </Modal.Footer>
+                    </Modal.Footer>
                 </Form>
             </Modal>
             <Button id="new-game-rm" className="no-blue" onClick={openModal} variant="outline-success" size="sm">
@@ -58,6 +48,10 @@ function RMNewGameButton() {
     )
 }
 
-export {
-    RMNewGameButton
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+export default connect(mapStateToProps, {merchantName, merchantSave})(RMNewGameButton)

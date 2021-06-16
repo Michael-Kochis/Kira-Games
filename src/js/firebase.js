@@ -26,7 +26,8 @@ const database = {
     return {...doc.data()}
   },
   messages: firestore.collection('messages'),
-  persona: firestore.collection('Persona')
+  persona: firestore.collection('Persona'),
+  rmstory: firestore.collection('Games').doc(`Repair-Merchant`).collection(`story`)
 }
 
 export {

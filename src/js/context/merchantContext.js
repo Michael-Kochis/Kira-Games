@@ -10,7 +10,7 @@ function useMerchant() {
 }
 
 function MerchantProvider({children}) {
-    let [currentMerchant, setCurrentMerchant] = useState();
+    let [currentMerchant, setCurrentMerchant] = useState({});
     let {currentUser} = useAuth();
     let loadingMerchant = false;
 
@@ -24,7 +24,7 @@ function MerchantProvider({children}) {
         } else {
             alert("No merchant error.")
         }
-        saveMerchant();
+        //saveMerchant();
     }
 
     function addStory(story) {
@@ -36,7 +36,7 @@ function MerchantProvider({children}) {
                     currentMerchant.story = [...currentMerchant.story, story]
                 }
             }
-            saveMerchant();
+            //saveMerchant();
         } else {
             alert("No Merchant error, cannot add story " + story);
         }
@@ -59,23 +59,12 @@ function MerchantProvider({children}) {
         }
     }
 
-    async function saveMerchant() {
-        await database.persona
-            .doc(`${currentUser.uid}`)
-            .collection("Games")
-            .doc(`${currentMerchant.name}`)
-            .set(currentMerchant)
-            .then()
-            .catch((error) => alert(error))
-    }
-
     const value = {
         currentMerchant,
         setCurrentMerchant,
         addDebentures,
         addStory,
         loadMerchant,
-        saveMerchant
     }
 
     return (

@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+
+import { merchantName } from '../actions/merchantActions'
 import { useMerchant } from '../context/merchantContext'
 
-function MerchantForm() {
-    const initialValues = {
-        game: "Repair Merchant",
-        XP: 0,
-        honor: 100,
-        coins: {gold: 0, silver: 0, copper: 0, tin: 0},
-        debentures: {gold: 0, silver: 0, copper: 0, tin: 0},
-        skills: {leather:3, lumber: 3, smith: 3},
-        story: {}
-    }
-    const [form, setForm] = useState(initialValues);
+function MerchantForm(props) {
+    const [form, setForm] = useState({});
     let {currentMerchant, setCurrentMerchant} = useMerchant(); 
     const {saveMerchant} = useMerchant();
 
     useEffect(() => {
         if ((currentMerchant !== null ) && (currentMerchant !== undefined)) {
             setForm(currentMerchant);
-        } else {
-            setForm(initialValues);
-        }
+        } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -28,13 +20,14 @@ function MerchantForm() {
         const {name, type, value, checked} = event.target;
         const updateData = (type === 'checkbox')?checked:value;
         setForm({...form, [name]: updateData});
-        console.log(form); 
+        if (name === "name") {props.setName(updateData)}
     }
 
     function saveFormMerchant(event) {
         event.preventDefault();
+        props.setName(form.name);
         setCurrentMerchant(form);
-        saveMerchant();
+        saveMerchant(form);
     }
 
     return (
@@ -46,6 +39,10 @@ function MerchantForm() {
     )
 }
 
-export {
-    MerchantForm
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+export default connect(mapStateToProps, {merchantName})(MerchantForm)

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { storyReducer } from './storyReducer'
+import { merchantReducer } from './merchantReducer';
+import { storyReducer } from './storyReducer';
 
 const primeReducer = combineReducers({
+    merchant: merchantReducer,
     story: storyReducer
 });
 

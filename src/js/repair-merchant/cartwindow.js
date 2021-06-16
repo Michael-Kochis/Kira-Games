@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { Cart } from './cart'
 import { FlexBox } from '../common/flexbox'
-import { MerchantIcon } from './merchant-icon'
+import MerchantIcon from './merchant-icon'
 import { TaskIcon } from './task-icon'
 import { useTask } from '../context/taskContext'
 
