@@ -1,4 +1,4 @@
-import { MERCHANT_NAME, MERCHANT_SAVE, MERCHANT_SET } from '../actions/merchantActions'
+import { ADD_DEBENTURES, ADD_STORY, MERCHANT_NAME, MERCHANT_SAVE, MERCHANT_SET } from '../actions/merchantActions'
 
 const initialState = {
     name: "",
@@ -13,14 +13,35 @@ const initialState = {
 
 const merchantReducer = (state = initialState, action) => {
     switch(action.type) {
+        case (ADD_DEBENTURES): 
+            let neoDebentures = action.payload;
+            neoDebentures.gold += state.debentures.gold;
+            neoDebentures.silver += state.debentures.silver;
+            neoDebentures.copper += state.debentures.copper;
+            neoDebentures.tin += state.debentures.tin;
+            
+            return ({
+                ...state,
+                debentures: neoDebentures
+            })
+        case (ADD_STORY): 
+            if (state.story.includes(action.payload)) {
+                return state;
+            } else { 
+                return ({
+                    ...state,
+                    story: [
+                        ...state.story,
+                        action.payload
+                    ]
+                })
+            }
         case (MERCHANT_NAME):
             return ({
                 ...state,
                 name: action.payload
             })
         case (MERCHANT_SAVE):
-            // console.log("Save detected.");
-            // console.log(state);
             return state;
         case (MERCHANT_SET):
             return ({

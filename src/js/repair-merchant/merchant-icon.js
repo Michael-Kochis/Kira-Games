@@ -1,8 +1,9 @@
 import React from 'react'
-import {useMerchant} from '../context/merchantContext'
+
+import { connect } from 'react-redux'
 
 function MerchantIcon(props) {
-    const {currentMerchant } = useMerchant();
+    const currentMerchant = props.merchant;
 
     const dragEnd = (event) => {
         const target = event.target;
@@ -34,6 +35,10 @@ function MerchantIcon(props) {
     )
 }
 
-export {
-    MerchantIcon
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+export default connect(mapStateToProps, {})(MerchantIcon)

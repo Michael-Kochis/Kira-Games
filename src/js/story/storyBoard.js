@@ -1,75 +1,55 @@
-import {React, useEffect, useRef, useState} from 'react'
+import {React, useEffect, useRef} from 'react'
 import {Button} from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
 import '../../App.css'
-import {database} from '../firebase'
-import {useMerchant} from '../context/merchantContext'
+
+import { useAuth } from '../context/authContext'
 
 import { connect } from 'react-redux'
-import { endStory, setIndex, setStory, startStory } from '../actions/storyActions'
+import { addDebentures, addStory, merchantSave } from '../actions/merchantActions'
+import { endStory, loadStory, nextIndex, prevIndex, setStory, startStory } from '../actions/storyActions'
 
 function StoryBoard(props) {
-    let [storyAward, setStoryAward] = useState();
     let history = useHistory();
-    let {addDebentures, addStory, currentMerchant} = useMerchant();
+    const { currentUser } = useAuth();
     let name = props.id;
     let merchantName = props.merchant.name;
     const storyRef = useRef([]);
 
-    function addStoryAward(award) {
-        if (currentMerchant.story.includes("RM-Intro")) {
+    function addStoryAward() {
+        if (props.merchant.story.includes(props.story.name)) {
             // do nothing, story already awarded.
         } else {
-            if (award.debentures) {
-                addDebentures(award.debentures);
+            if (props.story.awards.debentures) {
+                props.addDebentures(props.story.awards.debentures);
             }
         }   
     }
 
     function backStory() {
-        props.setIndex(props.story.index - 1);
+        props.prevIndex();
     }
 
     function finishStory() {
-        if (currentMerchant) {
-            addStoryAward(storyAward);
-            addStory("RM-Intro");
+        if (props.merchant) {
+            addStoryAward();
+            props.addStory("RM-Intro");
+            props.merchantSave(props.merchant, currentUser.uid);
         }
         history.push(`/repair-merchant/${merchantName}`);
     }
 
-    async function getStory() {
-        try { 
-            await database.games.doc(`Repair-Merchant`).collection(`story`)
-            .doc(`${name}`).get().then(doc => { 
-                if (doc.exists) { 
-                   setStoryAward(doc.data().awards);
-                    storyAward = doc.data().awards;
-                    props.setStory(doc.data().story.map((item) => {
-                        if (item.speaker === "merchant") {
-                            item.speaker = merchantName;
-                        }
-                        console.log("Replacing merchant name: " + merchantName);
-                        item.quote = item.quote.replace("$merchant", merchantName);
-
-                        return item; 
-                    })) 
-                }
-            }).catch(error => alert(error));
-            
-        } catch (error) {
-            alert(error);
-        }
-        return props.story.book;
+    async function getStory(name) {
+        props.loadStory(name)
     }
 
     function nextStory() {
-        props.setIndex(props.story.index + 1);
+        props.nextIndex();
     }
 
     useEffect(() => { 
         if (name !== undefined && name !== null) {
-            getStory();
+            getStory("RM-Intro");
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storyRef])
@@ -96,5 +76,17 @@ function mapStateToProps(state) {
     }
 }
 
+const mapFunctionsToProps = {
+    addDebentures,
+    addStory,
+    endStory, 
+    loadStory,
+    merchantSave,
+    nextIndex, 
+    prevIndex, 
+    setStory, 
+    startStory
+}
 
-export default connect(mapStateToProps, { endStory, setIndex, setStory, startStory})(StoryBoard)
+
+export default connect(mapStateToProps, mapFunctionsToProps)(StoryBoard)

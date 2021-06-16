@@ -24,7 +24,7 @@ function MerchantProvider({children}) {
         } else {
             alert("No merchant error.")
         }
-        saveMerchant();
+        //saveMerchant();
     }
 
     function addStory(story) {
@@ -36,7 +36,7 @@ function MerchantProvider({children}) {
                     currentMerchant.story = [...currentMerchant.story, story]
                 }
             }
-            saveMerchant();
+            //saveMerchant();
         } else {
             alert("No Merchant error, cannot add story " + story);
         }
@@ -59,24 +59,12 @@ function MerchantProvider({children}) {
         }
     }
 
-    async function saveMerchant(merchant) {
-        await database.persona
-            .doc(`${currentUser.uid}`)
-            .collection("Games")
-            .doc(`${merchant.name}`)
-            .set(merchant)
-            .then(
-                console.log("Successful save detected.")
-            ).catch((error) => alert(error))
-    }
-
     const value = {
         currentMerchant,
         setCurrentMerchant,
         addDebentures,
         addStory,
         loadMerchant,
-        saveMerchant
     }
 
     return (

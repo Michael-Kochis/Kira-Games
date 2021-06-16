@@ -1,9 +1,11 @@
-import { END_STORY, SET_INDEX, SET_STORY, START_STORY } from '../actions/storyActions'
+import { END_STORY, SET_AWARDS, SET_INDEX, SET_NAME, SET_STORY, START_STORY } from '../actions/storyActions'
 
 const initialState = {
+    awards: {},
     index: 0,
     isAtStart: true,
     isAtEnd: false,
+    name: "",
     book: []
 }
 
@@ -14,10 +16,20 @@ const storyReducer = (state = initialState, action) => {
                 ...state,
                 isAtEnd: action.payload
             })
+        case (SET_AWARDS):
+            return ({
+                ...state,
+                awards: action.payload
+            })
         case (SET_INDEX):
             return ({
                 ...state,
                 index: action.payload
+            })
+        case (SET_NAME):
+            return ({
+                ...state,
+                name: action.payload
             })
         case (SET_STORY): 
             return ({
