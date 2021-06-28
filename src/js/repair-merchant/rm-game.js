@@ -1,33 +1,24 @@
-import {React, useEffect, useRef, useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {React, useEffect, useRef} from 'react'
+import { useParams } from 'react-router-dom'
+
 import '../../App.css'
 import {ChatApp} from '../chatApp/chatApp'
-import {database} from '../firebase'
 import {KiraNavBar} from '../KiraNavBar'
 import RMCharacterSheet from './rm-character'
 import {RMMainGame} from './gameWindow'
-import {useAuth} from '../context/authContext'
 
+import { useAuth } from '../context/authContext'
+import { connect } from 'react-redux'
+import { merchantLoad } from '../actions/merchantActions'
 
-function RMGame() {
-    let {currentUser} = useAuth();
+function RMGame(props) {
     let merchantRef = useRef();
-    let {name} = useParams()
+    const merchant = props.merchant;
+    const {name} = useParams();
+    const { currentUser } = useAuth();
 
-    let [merchant, setMerchant] = useState();
-
-    async function getMerchant() {
-        await database.persona
-        .doc(`${currentUser.uid}`)
-        .collection("Games")
-        .doc(`${name}`)
-        .get().then( doc => {
-            setMerchant(doc.data() );
-        }).catch(error => alert(error));
-    }
-    
     useEffect(() => {
-        getMerchant();
+        props.merchantLoad(name, currentUser.uid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [merchantRef]); 
     
@@ -44,6 +35,10 @@ function RMGame() {
     )
 }
 
-export {
-    RMGame
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+export default connect(mapStateToProps, {merchantLoad})(RMGame);

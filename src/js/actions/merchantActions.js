@@ -12,6 +12,7 @@ const addDebentures = (neoDebentures) => {
 }
 
 const addStory = (name) => {
+    console.log(name);
     return ({type: ADD_STORY, payload: name});
 }
 
@@ -40,6 +41,7 @@ const merchantSave = (merchant, uid) => {
             .set(merchant)
             .then(() => { 
                 dispatch({type: MERCHANT_SAVE});
+                dispatch(merchantSet, merchant);
                 //window.location.href("/");
             }).catch((error) => alert(error));
     })
