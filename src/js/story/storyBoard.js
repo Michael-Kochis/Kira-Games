@@ -49,7 +49,7 @@ function StoryBoard(props) {
 
     useEffect(() => { 
         if (name !== undefined && name !== null) {
-            getStory("RM-Intro");
+            getStory(name);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storyRef])
@@ -62,7 +62,7 @@ function StoryBoard(props) {
         <div id="story-board">
             {currentStory && <h3 id="speaker">{currentStory.speaker}</h3>}
             {currentStory && <p className="story-text">{currentStory.quote}</p> }
-            {!currentStory && <p>Story not found!</p>}
+            {!currentStory && <p>Story not found! {name}</p>}
             {!startStory && <Button className="btn back" onClick={backStory}>Back</Button>}
             {!endStory && <Button className="btn next" onClick={nextStory}>Next</Button>}
             {endStory && <Button className="btn end" onClick={finishStory}>Finish</Button>}

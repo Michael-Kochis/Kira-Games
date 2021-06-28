@@ -11,18 +11,28 @@ function RMMainGame(props) {
 
     if (mode === "story" ) { 
         if (!(replayStory && (replayStory.includes("true")) ) &&
-            (merchant.story && merchant.story.includes("RM-Intro")) )  {
+            (merchant.story && merchant.story.includes("RM-Intro")
+            && merchant.story.includes("Meet-Schultz")) )  {
             setMode("game");
         } 
     }
 
     if (mode === 'story') {
-        return (
-            <div>
-                {merchant && mode === "story" && <StoryBoard id="RM-Intro" merchant={merchant.name} />}
-                {!merchant && <p>No merchant found!</p>}
-            </div>
-        )    
+        if (merchant && merchant.story.includes("RM-Intro")) {
+            return (
+                <div>
+                    {merchant && <StoryBoard id="Meet-Schultz" merchant={merchant.name} />}
+                    {!merchant && <p>No merchant found!</p>}
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    {merchant && mode === "story" && <StoryBoard id="RM-Intro" merchant={merchant.name} />}
+                    {!merchant && <p>No merchant found!</p>}
+                </div>
+            )    
+        }
     } else if (mode === "map") { 
         return (
             <MapCanvas />
