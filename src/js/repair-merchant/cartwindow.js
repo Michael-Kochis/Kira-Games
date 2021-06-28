@@ -7,13 +7,25 @@ import MerchantIcon from './merchant-icon'
 import { TaskIcon } from './task-icon'
 import { useTask } from '../context/taskContext'
 
+import { addStory, merchantSave } from '../actions/merchantActions'
+import { useAuth } from '../context/authContext'
+import { connect } from 'react-redux'
+
 function CartWindow(props) {
     let history = useHistory();
-    let { isEmpty, refresh, tasks } = useTask();
+    let { isEmpty, tasks } = useTask();
     const { setMode } = props;
+    const { currentUser } = useAuth();
 
     function goMap() {
         setMode("map");
+    };
+
+    const passTest = (evt) => {
+        evt.preventDefault();
+        props.addStory("default-test");
+        props.merchantSave(props.merchant, currentUser.uid);
+        history.push(`/repair-merchant/${props.merchant.name}`);
     }
 
     function replay() {
@@ -40,13 +52,22 @@ function CartWindow(props) {
                 </FlexBox>
             </FlexBox>
             <div id="cart-message"></div>
-            {isEmpty() && <Button onClick={refresh}>Next Task Set</Button>}
+            {isEmpty() && <Button onClick={passTest}>Pass Test</Button>}
             {isEmpty() && <Button onClick={goMap}>World Map</Button>}
             <Button onClick={replay} >Replay Story</Button>
         </div>
     )
 }
 
-export {
-    CartWindow
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+const mapFunctionsToProps = {
+    addStory,
+    merchantSave
+}
+
+export default connect(mapStateToProps, mapFunctionsToProps)(CartWindow);

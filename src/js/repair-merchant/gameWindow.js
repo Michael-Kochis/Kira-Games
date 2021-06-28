@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CartWindow } from '../repair-merchant/cartwindow';
+import CartWindow from '../repair-merchant/cartwindow';
 import { MapCanvas } from '../common/map/map-canvas';
 import StoryBoard from '../story/storyBoard';
 
@@ -19,10 +19,18 @@ function RMMainGame(props) {
 
     if (mode === 'story') {
         if (merchant && merchant.story.includes("RM-Intro")) {
-            return (
+            if (merchant.story.includes("default-test")) { 
+                return (
+                    <div>
+                        {merchant && <StoryBoard id="Meet-Schultz" merchant={merchant.name} />}
+                        {!merchant && <p>No merchant found!</p>}
+                    </div>
+                )
+            } 
+            mode = "game";
+            return(
                 <div>
-                    {merchant && <StoryBoard id="Meet-Schultz" merchant={merchant.name} />}
-                    {!merchant && <p>No merchant found!</p>}
+                    {merchant && <CartWindow setMode={setMode}>This is the CartWindow</CartWindow>}
                 </div>
             )
         } else {
