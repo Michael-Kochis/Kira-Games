@@ -4,21 +4,11 @@ import { MapCanvas } from '../common/map/map-canvas';
 import StoryBoard from '../story/storyBoard';
 
 function RMMainGame(props) {
-    let urlParams = new URLSearchParams(window.location.search);
-    let replayStory = urlParams.get('replayStory');
     let merchant = props.merchant;
     let [mode, setMode] = useState("story");
 
-    if (mode === "story" ) { 
-        if (!(replayStory && (replayStory.includes("true")) ) &&
-            (merchant.story && merchant.story.includes("RM-Intro")
-            && merchant.story.includes("Meet-Schultz")) )  {
-            setMode("game");
-        } 
-    }
-
     if (mode === 'story') {
-        if (merchant && merchant.story.includes("RM-Intro")) {
+        if (merchant.story.includes("RM-Intro")) {
             if (merchant.story.includes("default-test")) { 
                 return (
                     <div>
@@ -26,17 +16,17 @@ function RMMainGame(props) {
                         {!merchant && <p>No merchant found!</p>}
                     </div>
                 )
-            } 
-            mode = "game";
-            return(
-                <div>
-                    {merchant && <CartWindow setMode={setMode}>This is the CartWindow</CartWindow>}
-                </div>
-            )
+            } else { 
+                return(
+                    <div>
+                        {merchant && <CartWindow setMode={setMode}>This is the CartWindow</CartWindow>}
+                    </div>
+                )
+            }
         } else {
             return (
                 <div>
-                    {merchant && mode === "story" && <StoryBoard id="RM-Intro" merchant={merchant.name} />}
+                    {merchant && <StoryBoard id="RM-Intro" merchant={merchant.name} />}
                     {!merchant && <p>No merchant found!</p>}
                 </div>
             )    

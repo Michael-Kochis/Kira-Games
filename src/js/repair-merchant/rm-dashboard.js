@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import {KiraNavBar} from '../KiraNavBar'
 import RMNewGameButton from './RMNewGameButton'
-import { UseMerchant } from '../context/useMerchant'
+import UseMerchant from '../context/useMerchant'
 
 function RMDashboard() {
     

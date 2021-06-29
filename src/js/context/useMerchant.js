@@ -1,22 +1,23 @@
 import  {React, useEffect, useRef, useState } from 'react'
 import {Button} from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
-import {useMerchant} from './merchantContext'
 import {database} from '../firebase'
 import {useAuth} from './authContext'
 
-function UseMerchant() {
+import { connect } from 'react-redux'
+import { merchantLoad } from '../actions/merchantActions'
+
+function UseMerchant(props) {
   const [children, setChildren] = useState([]);
   const { currentUser } = useAuth();
-  let {loadMerchant} = useMerchant();
   const childRef = useRef([]);
   const history = useHistory();
 
-  async function doNothing(object, e) {
+  async function doNothing(merchantName, e) {
     e.preventDefault();
     try {
-      loadMerchant(object);
-      history.push(`/repair-merchant/${object}`);
+      props.merchantLoad(merchantName, currentUser.uid);
+      history.push(`/repair-merchant/`);
     } catch(error) {
       alert(error);
     }
@@ -57,6 +58,14 @@ function UseMerchant() {
   );
 }
 
-export {
-    UseMerchant
+function mapStateToProps(state) {
+  return {
+      ...state
+  }
 }
+
+const mapFunctionsToProps = {
+  merchantLoad
+}
+
+export default connect(mapStateToProps, mapFunctionsToProps)(UseMerchant)
