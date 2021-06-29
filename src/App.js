@@ -24,7 +24,7 @@ function App() {
                     <Switch>
                     {/* Kira Games - Repair Merchant */}
                       <PrivateRoute exact path="/" component={RMDashboard} />
-                      <PrivateRoute path="/repair-merchant/:name" component={RMGame} />
+                      <PrivateRoute path="/repair-merchant" component={RMGame} />
                     
                     {/* Profile */}
                     <PrivateRoute exact path="/user" component={Profile} />

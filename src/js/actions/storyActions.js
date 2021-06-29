@@ -20,7 +20,6 @@ const loadStory = (storyName) => {
         database.rmstory
         .doc(`${storyName}`).get().then(doc => { 
             if (doc.exists) { 
-                console.log("something found " + doc.data());
                 dispatch(setAwards(doc.data().awards) );
                 dispatch(setName(doc.data().name));
                 dispatch(setStory(doc.data().story.map((item) => {
